@@ -1,0 +1,14 @@
+appId: de.almanya101.app
+name: Smoke - Maaş hesaplayıcı beta
+---
+- launchApp:
+    clearState: true
+- tapOn: "Araçlar"
+- tapOn: "Maaş Hesaplayıcı (Beta)"
+- assertVisible: "Beta — Referans amaçlı"
+- assertVisible:
+    text: ".*Aylık brüt.*"
+- tapOn: "Hesapla"
+# Net sonucu kartı görünür (varsayılan 3000 € brüt ile)
+- assertVisible:
+    text: "Aylık net"

@@ -1,0 +1,15 @@
+appId: de.almanya101.app
+name: Smoke - Haber listesi ve detay
+---
+- launchApp:
+    clearState: true
+- tapOn: "Haberler"
+- assertVisible: "Haberler"
+# İlk haber kartına dokun (liste yüklendiyse). Detayda paylaş butonu görünür.
+- tapOn:
+    index: 0
+    text: ".*dk okuma.*"
+    optional: true
+- assertVisible:
+    text: "Paylaş"
+    optional: true

@@ -1,0 +1,24 @@
+appId: de.almanya101.app
+name: Smoke - Vatandaşlık testi gerçek deneme
+---
+- launchApp:
+    clearState: true
+- tapOn: "Araçlar"
+- tapOn: "Vatandaşlık Testi"
+- assertVisible: "Gerçek Deneme Sınavı"
+# Eyalet seçici (gerçek deneme kartındaki) — ilk seçiciyi aç
+- tapOn:
+    text: "Eyalet seçin"
+    index: 0
+    optional: true
+- tapOn:
+    text: "Bayern"
+    optional: true
+# Sınava başla (sorular yüklendiğinde ilk soru görünür)
+- tapOn:
+    text: "Sınava Başla"
+    index: 0
+    optional: true
+- assertVisible:
+    text: ".*Soru 1 / 33.*"
+    optional: true

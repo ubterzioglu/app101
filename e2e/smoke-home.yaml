@@ -1,0 +1,13 @@
+appId: de.almanya101.app
+name: Smoke - Ana Sayfa ve sekme gezinme
+---
+- launchApp:
+    clearState: true
+- assertVisible: "almanya101"
+- assertVisible: "Hızlı Başlangıç"
+- tapOn: "Araçlar"
+- assertVisible: "Öne Çıkanlar"
+- tapOn: "Haberler"
+- assertVisible: "Haberler"
+- tapOn: "Ana Sayfa"
+- assertVisible: "Hızlı Başlangıç"

@@ -1,0 +1,16 @@
+appId: de.almanya101.app
+name: Smoke - Hizmet rehberi filtreleri
+---
+- launchApp:
+    clearState: true
+- tapOn: "Rehber"
+- assertVisible: "Hizmet Rehberi"
+- assertVisible: "Hizmet veya isim ara..."
+# Bir kategori chip'i seç
+- tapOn:
+    text: ".*Doktor.*"
+    optional: true
+# Şehir seçiciyi aç
+- tapOn:
+    text: "Şehir seçin"
+    optional: true
