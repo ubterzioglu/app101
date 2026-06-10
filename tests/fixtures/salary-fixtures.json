@@ -1,0 +1,838 @@
+[
+  {
+    "input": {
+      "amount": 2000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 2000,
+      "netMonthly": 1479.97,
+      "deductionsMonthly": 520.03,
+      "tax": {
+        "lohnsteuer": 89.03,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 171,
+        "pv": 48,
+        "rv": 186,
+        "av": 26,
+        "total": 431
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 3000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 3000,
+      "netMonthly": 2061.85,
+      "deductionsMonthly": 938.15,
+      "tax": {
+        "lohnsteuer": 291.65,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 256.5,
+        "pv": 72,
+        "rv": 279,
+        "av": 39,
+        "total": 646.5
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 3500,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "BY",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": true,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 3500,
+      "netMonthly": 2310.45,
+      "deductionsMonthly": 1189.55,
+      "tax": {
+        "lohnsteuer": 403.06,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 299.25,
+        "pv": 84,
+        "rv": 325.5,
+        "av": 45.5,
+        "total": 754.25
+      },
+      "kirchensteuer": 32.24
+    }
+  },
+  {
+    "input": {
+      "amount": 4000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "3",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 4000,
+      "netMonthly": 2934.46,
+      "deductionsMonthly": 1065.54,
+      "tax": {
+        "lohnsteuer": 203.54,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 342,
+        "pv": 96,
+        "rv": 372,
+        "av": 52,
+        "total": 862
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 4500,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "4",
+      "state": "NRW",
+      "hasChildren": true,
+      "childrenCount": 0,
+      "childrenUnder25Count": 2,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 4500,
+      "netMonthly": 2922.42,
+      "deductionsMonthly": 1577.58,
+      "tax": {
+        "lohnsteuer": 646.08,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 384.75,
+        "pv": 69.75,
+        "rv": 418.5,
+        "av": 58.5,
+        "total": 931.5
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 5000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 5000,
+      "netMonthly": 3144.81,
+      "deductionsMonthly": 1855.19,
+      "tax": {
+        "lohnsteuer": 777.69,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 427.5,
+        "pv": 120,
+        "rv": 465,
+        "av": 65,
+        "total": 1077.5
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 5500,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "5",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 5500,
+      "netMonthly": 2970.75,
+      "deductionsMonthly": 2529.25,
+      "tax": {
+        "lohnsteuer": 1344,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 470.25,
+        "pv": 132,
+        "rv": 511.5,
+        "av": 71.5,
+        "total": 1185.25
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 6000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "6",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 6000,
+      "netMonthly": 3197.97,
+      "deductionsMonthly": 2802.03,
+      "tax": {
+        "lohnsteuer": 1529.56,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 496.97,
+        "pv": 139.5,
+        "rv": 558,
+        "av": 78,
+        "total": 1272.47
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 2500,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "2",
+      "state": "NRW",
+      "hasChildren": true,
+      "childrenCount": 0,
+      "childrenUnder25Count": 1,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 2500,
+      "netMonthly": 1877.94,
+      "deductionsMonthly": 622.06,
+      "tax": {
+        "lohnsteuer": 98.31,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 213.75,
+        "pv": 45,
+        "rv": 232.5,
+        "av": 32.5,
+        "total": 523.75
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 7000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "SN",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 7000,
+      "netMonthly": 4161.92,
+      "deductionsMonthly": 2838.08,
+      "tax": {
+        "lohnsteuer": 1430.55,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 496.97,
+        "pv": 168.56,
+        "rv": 651,
+        "av": 91,
+        "total": 1407.53
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 8000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "3",
+      "state": "BW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": true,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 8000,
+      "netMonthly": 5265.41,
+      "deductionsMonthly": 2734.59,
+      "tax": {
+        "lohnsteuer": 1157.52,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 496.97,
+        "pv": 139.5,
+        "rv": 744,
+        "av": 104,
+        "total": 1484.47
+      },
+      "kirchensteuer": 92.6
+    }
+  },
+  {
+    "input": {
+      "amount": 10000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 10000,
+      "netMonthly": 5700,
+      "deductionsMonthly": 4300,
+      "tax": {
+        "lohnsteuer": 2646.19,
+        "soli": 121.64,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 496.97,
+        "pv": 139.5,
+        "rv": 785.85,
+        "av": 109.85,
+        "total": 1532.17
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 3200,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": false,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 3200,
+      "netMonthly": 2194.19,
+      "deductionsMonthly": 1005.81,
+      "tax": {
+        "lohnsteuer": 335.41,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 273.6,
+        "pv": 57.6,
+        "rv": 297.6,
+        "av": 41.6,
+        "total": 670.4
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 4800,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "4",
+      "state": "NRW",
+      "hasChildren": true,
+      "childrenCount": 0,
+      "childrenUnder25Count": 3,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 4800,
+      "netMonthly": 3094.16,
+      "deductionsMonthly": 1705.84,
+      "tax": {
+        "lohnsteuer": 724.24,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 410.4,
+        "pv": 62.4,
+        "rv": 446.4,
+        "av": 62.4,
+        "total": 981.6
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 60000,
+      "period": "yearly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 5000,
+      "netMonthly": 3144.81,
+      "deductionsMonthly": 1855.19,
+      "tax": {
+        "lohnsteuer": 777.69,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 427.5,
+        "pv": 120,
+        "rv": 465,
+        "av": 65,
+        "total": 1077.5
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 90000,
+      "period": "yearly",
+      "type": "gross",
+      "taxClass": "3",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 7500,
+      "netMonthly": 5052.44,
+      "deductionsMonthly": 2447.56,
+      "tax": {
+        "lohnsteuer": 1016.09,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 496.97,
+        "pv": 139.5,
+        "rv": 697.5,
+        "av": 97.5,
+        "total": 1431.47
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 2800,
+      "period": "monthly",
+      "type": "net",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 4341.26,
+      "netMonthly": 2800,
+      "deductionsMonthly": 1541.26,
+      "tax": {
+        "lohnsteuer": 605.71,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 371.18,
+        "pv": 104.19,
+        "rv": 403.74,
+        "av": 56.44,
+        "total": 935.55
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 2000,
+      "period": "monthly",
+      "type": "net",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 2891.46,
+      "netMonthly": 2000,
+      "deductionsMonthly": 891.47,
+      "tax": {
+        "lohnsteuer": 268.35,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 247.22,
+        "pv": 69.4,
+        "rv": 268.91,
+        "av": 37.59,
+        "total": 623.12
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 3500,
+      "period": "monthly",
+      "type": "net",
+      "taxClass": "3",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 4963.33,
+      "netMonthly": 3500,
+      "deductionsMonthly": 1463.33,
+      "tax": {
+        "lohnsteuer": 393.74,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 424.36,
+        "pv": 119.12,
+        "rv": 461.59,
+        "av": 64.52,
+        "total": 1069.59
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 1500,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 1500,
+      "netMonthly": 1166.87,
+      "deductionsMonthly": 333.13,
+      "tax": {
+        "lohnsteuer": 9.88,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 128.25,
+        "pv": 36,
+        "rv": 139.5,
+        "av": 19.5,
+        "total": 323.25
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 12000,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "gkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 0,
+      "ppvPremium": 0
+    },
+    "expected": {
+      "grossMonthly": 12000,
+      "netMonthly": 6789.9,
+      "deductionsMonthly": 5210.1,
+      "tax": {
+        "lohnsteuer": 3486.19,
+        "soli": 191.74,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 496.97,
+        "pv": 139.5,
+        "rv": 785.85,
+        "av": 109.85,
+        "total": 1532.17
+      },
+      "kirchensteuer": 0
+    }
+  },
+  {
+    "input": {
+      "amount": 4200,
+      "period": "monthly",
+      "type": "gross",
+      "taxClass": "1",
+      "state": "NRW",
+      "hasChildren": false,
+      "childrenCount": 0,
+      "childrenUnder25Count": 0,
+      "age23Plus": true,
+      "churchTax": false,
+      "childAllowance": 0,
+      "insuranceType": "pkv",
+      "kvBase": 14.6,
+      "kvZusatz": 2.5,
+      "pkvPremium": 450,
+      "ppvPremium": 60
+    },
+    "expected": {
+      "grossMonthly": 4200,
+      "netMonthly": 2674.45,
+      "deductionsMonthly": 1525.55,
+      "tax": {
+        "lohnsteuer": 570.35,
+        "soli": 0,
+        "source": "legacy"
+      },
+      "social": {
+        "kv": 450,
+        "pv": 60,
+        "rv": 390.6,
+        "av": 54.6,
+        "total": 955.2
+      },
+      "kirchensteuer": 0
+    }
+  }
+]

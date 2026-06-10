@@ -4,6 +4,7 @@
     "strict": true,
     "noUncheckedIndexedAccess": false,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "types": ["node", "jest"],
     "paths": {
       "@/*": [
