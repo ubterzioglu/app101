@@ -1,3 +1,4 @@
+import { EXTERNAL_LINKS } from './external-links';
 import { colors } from '@/theme';
 
 export interface QuickAction {
@@ -53,5 +54,5 @@ export const MORE_LINKS: MoreLink[] = [
   { key: 'about', label: 'Hakkımızda', icon: 'ℹ️', href: '/hakkimizda' },
   { key: 'contact', label: 'İletişim', icon: '✉️', href: '/iletisim' },
   { key: 'privacy', label: 'Gizlilik Politikası', icon: '🔒', href: '/gizlilik' },
-  { key: 'website', label: 'Web Sitesini Aç', icon: '🌐', external: 'https://almanya101.de' },
+  { key: 'website', label: 'Web Sitesini Aç', icon: '🌐', external: EXTERNAL_LINKS.website },
 ];

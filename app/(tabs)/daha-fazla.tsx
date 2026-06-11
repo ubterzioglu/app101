@@ -1,3 +1,4 @@
+import * as Application from 'expo-application';
 import Constants from 'expo-constants';
 import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -11,7 +12,12 @@ import { colors, fontSize, fontWeight, spacing } from '@/theme';
 
 export default function DahaFazlaScreen() {
   const router = useRouter();
-  const version = Constants.expoConfig?.version ?? '1.0.0';
+  const appVersion = Application.nativeApplicationVersion ?? Constants.expoConfig?.version ?? 'Bilinmiyor';
+  const fallbackBuildVersion = String(Constants.expoConfig?.android?.versionCode ?? '').trim();
+  const buildVersion = Application.nativeBuildVersion ?? (fallbackBuildVersion || null);
+  const versionLabel = buildVersion
+    ? `Uygulama sürümü ${appVersion} (Build ${buildVersion})`
+    : `Uygulama sürümü ${appVersion}`;
 
   return (
     <ScreenContainer padded={false}>
@@ -38,7 +44,7 @@ export default function DahaFazlaScreen() {
           ))}
         </View>
 
-        <Text style={styles.version}>Uygulama sürümü {version}</Text>
+        <Text style={styles.version}>{versionLabel}</Text>
       </ScrollView>
     </ScreenContainer>
   );

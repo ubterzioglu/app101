@@ -5,6 +5,7 @@ import { ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { AppButton, EmptyState, ErrorState, LoadingCard } from '@/components/ui';
+import { buildWebsiteUrl } from '@/constants/external-links';
 import { useCornerPost } from '@/features/corner/hooks';
 import { colors, fontSize, fontWeight, lineHeight, radius, spacing } from '@/theme';
 
@@ -15,7 +16,7 @@ export default function CornerDetailScreen() {
 
   async function onShare() {
     if (!post) return;
-    const url = `https://almanya101.de/yazi-dizisi/${post.slug}`;
+    const url = buildWebsiteUrl(`/yazi-dizisi/${post.slug}`);
     try {
       await Share.share({ message: `${post.title}\n${url}`, url, title: post.title });
     } catch {

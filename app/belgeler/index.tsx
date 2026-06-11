@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { AppButton, EmptyState } from '@/components/ui';
+import { buildWebsiteUrl } from '@/constants/external-links';
 import { openExternalUrl } from '@/lib/urls';
 import { spacing } from '@/theme';
 
@@ -22,7 +23,7 @@ export default function DocumentsScreen() {
           <AppButton
             label="Belgeler Sayfasını Aç"
             variant="primary"
-            onPress={() => openExternalUrl('https://almanya101.de/belgeler')}
+            onPress={() => openExternalUrl(buildWebsiteUrl('/belgeler'))}
           />
         </View>
       </ScrollView>

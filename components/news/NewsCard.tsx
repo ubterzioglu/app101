@@ -38,6 +38,11 @@ export function NewsCard({ article, onPress }: NewsCardProps) {
           {article.excerpt}
         </Text>
       ) : null}
+      {article.sourceName ? (
+        <Text style={styles.source} numberOfLines={1}>
+          Kaynak: {article.sourceName}
+        </Text>
+      ) : null}
       <Text style={styles.meta}>
         {article.dateLabel} · {article.readingMinutes} dk okuma
       </Text>
@@ -78,6 +83,12 @@ const styles = StyleSheet.create({
     fontSize: fontSize.sm,
     color: colors.gray600,
     marginTop: spacing.xs,
+    paddingHorizontal: spacing.xs,
+  },
+  source: {
+    fontSize: fontSize.xs,
+    color: colors.gray500,
+    marginTop: spacing.sm,
     paddingHorizontal: spacing.xs,
   },
   meta: {

@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { AppButton, AppCard } from '@/components/ui';
+import { EXTERNAL_LINKS } from '@/constants/external-links';
 import { QUICK_ACTIONS, TOOL_LINKS } from '@/constants/navigation';
 import { openExternalUrl } from '@/lib/urls';
 import { colors, fontSize, fontWeight, radius, spacing } from '@/theme';
@@ -59,7 +60,7 @@ export default function HomeScreen() {
           <AppButton
             label="Web Sitesini Aç"
             variant="outline"
-            onPress={() => openExternalUrl('https://almanya101.de')}
+            onPress={() => openExternalUrl(EXTERNAL_LINKS.website)}
           />
         </View>
       </ScrollView>

@@ -3,8 +3,9 @@ import { ScrollView, StyleSheet, Text } from 'react-native';
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { AppButton } from '@/components/ui';
+import { EXTERNAL_LINKS } from '@/constants/external-links';
 import { openExternalUrl } from '@/lib/urls';
-import { colors, fontSize, fontWeight, lineHeight, spacing } from '@/theme';
+import { colors, fontSize, lineHeight, spacing } from '@/theme';
 
 export default function PrivacyScreen() {
   return (
@@ -12,18 +13,32 @@ export default function PrivacyScreen() {
       <AppHeader title="Gizlilik Politikası" showBack />
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.paragraph}>
-          Bu uygulama, içerik göstermek için yalnızca herkese açık verileri okur. Hizmet önerisi
-          veya kırık bağlantı bildirimi gönderdiğinizde, girdiğiniz bilgiler değerlendirme için
-          almanya101 sunucularına iletilir.
+          Bu uygulama; haberler, rehber içeriği ve benzeri herkese açık verileri göstermek için
+          public okuma akışlarını kullanır.
         </Text>
         <Text style={styles.paragraph}>
-          İlk sürümde kişisel hesap, kullanıcı takibi veya reklam amaçlı analytics
-          bulunmamaktadır. Ayrıntılı gizlilik politikası web sitemizde yer alır.
+          Hizmet sağlayıcı önerisi gönderdiğinizde formda paylaştığınız bilgiler, değerlendirme
+          amacıyla almanya101 sunucularına iletilir. Kırık bağlantı bildirimi gönderdiğinizde de
+          bildirim içeriği aynı şekilde almanya101 sunucularına ulaşır.
+        </Text>
+        <Text style={styles.paragraph}>
+          Bu ilk sürümde genel kullanıcı hesabı bulunmaz. Kod denetiminde reklam SDK paketi veya
+          kullanıcı takibi amacıyla analytics SDK paketi görünmemektedir.
+        </Text>
+        <Text style={styles.paragraph}>
+          Saklama süresi, IP logları veya üçüncü taraf paylaşımı gibi ayrıntılar bu mobil repo
+          içinden kesin olarak doğrulanamamaktadır. Ayrıntılı politika için web gizlilik sayfasını
+          inceleyebilirsiniz.
         </Text>
         <AppButton
           label="Tam Gizlilik Politikası"
           variant="outline"
-          onPress={() => openExternalUrl('https://almanya101.de/gizlilik')}
+          onPress={() => openExternalUrl(EXTERNAL_LINKS.privacyPolicy)}
+        />
+        <AppButton
+          label="İletişim ve Veri Talebi"
+          variant="secondary"
+          onPress={() => openExternalUrl(EXTERNAL_LINKS.contact)}
         />
       </ScrollView>
     </ScreenContainer>

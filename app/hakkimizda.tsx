@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text } from 'react-native';
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { AppButton } from '@/components/ui';
+import { EXTERNAL_LINKS } from '@/constants/external-links';
 import { openExternalUrl } from '@/lib/urls';
 import { colors, fontSize, fontWeight, lineHeight, spacing } from '@/theme';
 
@@ -25,7 +26,7 @@ export default function AboutScreen() {
         <AppButton
           label="Web Sitesini Aç"
           variant="outline"
-          onPress={() => openExternalUrl('https://almanya101.de')}
+          onPress={() => openExternalUrl(EXTERNAL_LINKS.website)}
         />
       </ScrollView>
     </ScreenContainer>

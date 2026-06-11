@@ -72,4 +72,24 @@ describe('check-no-secrets scanner', () => {
     expect(CHECK_SRC).toContain('git ls-files');
     expect(CHECK_SRC).toContain('.env.local');
   });
+
+  it('guards Google Play credential file names and private key markers', () => {
+    expect(CHECK_SRC).toContain('play-service-account');
+    expect(CHECK_SRC).toContain('service-account');
+    expect(CHECK_SRC).toContain('BEGIN PRIVATE KEY');
+    expect(CHECK_SRC).toContain('private_key_id');
+  });
+
+  it('matches real-looking Google API keys without catching placeholders', () => {
+    const pattern = /AIza[0-9A-Za-z_-]{20,}/;
+    expect(pattern.test('AIzaSyA0123456789abcdefghijklmn')).toBe(true);
+    expect(pattern.test('AIza<DEGER>')).toBe(false);
+  });
+
+  it('does not treat placeholder secret assignments as real leaked values', () => {
+    const pattern =
+      /SUPABASE_SERVICE_ROLE_KEY\s*[:=]\s*['"`]?(?!your_|example|placeholder|changeme|dummy|sample|test_|<)(?:sb_secret_[A-Za-z0-9_-]{10,}|eyJ[A-Za-z0-9._-]{20,}|[A-Za-z0-9._-]{24,})['"`]?/i;
+    expect(pattern.test('SUPABASE_SERVICE_ROLE_KEY=your_service_role_key')).toBe(false);
+    expect(pattern.test('SUPABASE_SERVICE_ROLE_KEY=sb_secret_abcd1234efgh5678')).toBe(true);
+  });
 });

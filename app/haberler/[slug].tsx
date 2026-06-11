@@ -5,6 +5,7 @@ import { Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-nati
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { AppButton, EmptyState, ErrorState, LoadingCard } from '@/components/ui';
+import { buildWebsiteUrl } from '@/constants/external-links';
 import { useNewsArticle, useRelatedNews } from '@/features/news/hooks';
 import { openExternalUrl } from '@/lib/urls';
 import { colors, fontSize, fontWeight, lineHeight, radius, spacing } from '@/theme';
@@ -18,7 +19,7 @@ export default function NewsDetailScreen() {
 
   async function onShare() {
     if (!article) return;
-    const url = `https://almanya101.de/haberler/${article.slug}`;
+    const url = buildWebsiteUrl(`/haberler/${article.slug}`);
     try {
       await Share.share({ message: `${article.title}\n${url}`, url, title: article.title });
     } catch {
@@ -68,6 +69,7 @@ export default function NewsDetailScreen() {
           <Text style={styles.meta}>
             {article.dateLabel} · {article.readingMinutes} dk okuma
           </Text>
+          {article.sourceName ? <Text style={styles.sourceMeta}>Kaynak: {article.sourceName}</Text> : null}
 
           {article.excerpt ? <Text style={styles.excerpt}>{article.excerpt}</Text> : null}
           {article.content ? <Text style={styles.text}>{article.content}</Text> : null}
@@ -123,6 +125,7 @@ const styles = StyleSheet.create({
     marginTop: spacing.xs,
   },
   meta: { fontSize: fontSize.xs, color: colors.gray400, marginTop: spacing.sm },
+  sourceMeta: { fontSize: fontSize.xs, color: colors.gray500, marginTop: spacing.xs },
   excerpt: {
     fontSize: fontSize.md,
     color: colors.gray700,

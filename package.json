@@ -13,7 +13,8 @@
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
     "test": "jest",
-    "verify": "npm run security:check && npm run typecheck && npm test"
+    "verify": "npm run security:check && npm run typecheck && npm test",
+    "release:check": "npm run verify && node scripts/check-play-release.mjs"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",
@@ -22,13 +23,14 @@
     "@tanstack/query-async-storage-persister": "^5.59.0",
     "@tanstack/react-query": "^5.59.0",
     "@tanstack/react-query-persist-client": "^5.59.0",
-    "expo": "~56.0.9",
+    "expo": "~56.0.11",
+    "expo-application": "~56.0.3",
     "expo-clipboard": "~56.0.4",
-    "expo-constants": "~56.0.17",
-    "expo-font": "~56.0.5",
-    "expo-image": "~56.0.10",
-    "expo-linking": "~56.0.13",
-    "expo-router": "~56.2.9",
+    "expo-constants": "~56.0.18",
+    "expo-font": "~56.0.6",
+    "expo-image": "~56.0.11",
+    "expo-linking": "~56.0.14",
+    "expo-router": "~56.2.10",
     "expo-secure-store": "~56.0.4",
     "expo-splash-screen": "~56.0.10",
     "expo-status-bar": "~56.0.4",
@@ -50,7 +52,7 @@
     "@types/node": "^22.19.20",
     "@types/react": "~19.2.2",
     "jest": "^29.7.0",
-    "jest-expo": "~56.0.0",
+    "jest-expo": "~56.0.5",
     "typescript": "~6.0.3"
   },
   "jest": {
