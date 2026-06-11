@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>almanya101 Google Play Kişisel Hesap Rehberi</title>
+    <style>
+      :root {
+        --bg: #f4efe7;
+        --paper: rgba(255, 252, 247, 0.88);
+        --paper-strong: #fffaf3;
+        --ink: #23180f;
+        --muted: #6c5a4f;
+        --line: rgba(72, 46, 27, 0.14);
+        --accent: #b24a1b;
+        --accent-soft: rgba(178, 74, 27, 0.12);
+        --accent-deep: #6d2411;
+        --olive: #50634d;
+        --shadow: 0 24px 60px rgba(69, 40, 17, 0.12);
+        --radius-xl: 28px;
+        --radius-lg: 22px;
+        --radius-md: 16px;
+        --content: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(178, 74, 27, 0.14), transparent 34%),
+          radial-gradient(circle at top right, rgba(80, 99, 77, 0.14), transparent 30%),
+          linear-gradient(180deg, #f7f1e7 0%, #f2ebdf 45%, #efe7da 100%);
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+        line-height: 1.68;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.16;
+        background-image:
+          linear-gradient(rgba(62, 39, 26, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(62, 39, 26, 0.04) 1px, transparent 1px);
+        background-size: 22px 22px;
+        mask-image: linear-gradient(180deg, black 35%, transparent 100%);
+      }
+
+      a {
+        color: var(--accent-deep);
+      }
+
+      .shell {
+        width: min(calc(100% - 32px), var(--content));
+        margin: 0 auto;
+        padding: 28px 0 56px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(135deg, rgba(255, 247, 238, 0.95), rgba(255, 251, 245, 0.86)),
+          var(--paper-strong);
+        border: 1px solid rgba(122, 74, 37, 0.12);
+        border-radius: 36px;
+        box-shadow: var(--shadow);
+        padding: 42px 42px 34px;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        right: -70px;
+        top: -90px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(178, 74, 27, 0.12), transparent 68%);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        padding: 8px 14px;
+        background: var(--accent-soft);
+        border: 1px solid rgba(178, 74, 27, 0.16);
+        border-radius: 999px;
+        color: var(--accent-deep);
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Garamond", "Times New Roman", serif;
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 10ch;
+        font-size: clamp(2.7rem, 5vw, 5rem);
+      }
+
+      .subtitle {
+        max-width: 860px;
+        margin: 18px 0 0;
+        font-size: 1.06rem;
+        color: var(--muted);
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .meta-card {
+        padding: 16px 18px;
+        background: rgba(255, 251, 246, 0.76);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+      }
+
+      .meta-label {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .meta-value {
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 22px;
+        margin-top: 24px;
+      }
+
+      .toc,
+      .content-panel {
+        background: var(--paper);
+        border: 1px solid rgba(90, 55, 29, 0.12);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .toc {
+        position: sticky;
+        top: 20px;
+        align-self: start;
+        padding: 24px 22px;
+      }
+
+      .toc h2 {
+        font-size: 1.15rem;
+        margin-bottom: 16px;
+      }
+
+      .toc ol {
+        margin: 0;
+        padding-left: 1.2rem;
+        display: grid;
+        gap: 8px;
+        color: var(--muted);
+      }
+
+      .toc a {
+        text-decoration: none;
+      }
+
+      .content-panel {
+        padding: 26px;
+      }
+
+      .notice {
+        margin-bottom: 28px;
+        padding: 20px 22px;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(178, 74, 27, 0.18);
+        background: linear-gradient(135deg, rgba(178, 74, 27, 0.12), rgba(255, 250, 242, 0.74));
+      }
+
+      .notice strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 1rem;
+      }
+
+      section {
+        scroll-margin-top: 28px;
+        margin-bottom: 26px;
+        padding: 26px;
+        background: rgba(255, 252, 247, 0.74);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+      }
+
+      section:last-child {
+        margin-bottom: 0;
+      }
+
+      section h2 {
+        font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+        margin-bottom: 14px;
+      }
+
+      h3 {
+        margin: 22px 0 10px;
+        font-size: 1.25rem;
+      }
+
+      h4 {
+        margin: 18px 0 8px;
+        font-size: 1.05rem;
+      }
+
+      p {
+        margin: 0 0 12px;
+      }
+
+      ul,
+      ol {
+        margin: 10px 0 14px;
+        padding-left: 1.35rem;
+      }
+
+      li + li {
+        margin-top: 6px;
+      }
+
+      .checklist {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 14px;
+      }
+
+      .checklist li {
+        position: relative;
+        padding: 12px 14px 12px 44px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .checklist li::before {
+        content: "";
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        width: 17px;
+        height: 17px;
+        border: 2px solid rgba(80, 99, 77, 0.56);
+        border-radius: 5px;
+        background: rgba(255, 252, 247, 0.9);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 16px;
+        overflow: hidden;
+        border-radius: 16px;
+        font-size: 0.97rem;
+      }
+
+      th,
+      td {
+        padding: 13px 14px;
+        border: 1px solid rgba(95, 57, 30, 0.12);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: rgba(178, 74, 27, 0.11);
+        font-weight: 700;
+      }
+
+      tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.32);
+      }
+
+      code {
+        padding: 0.1rem 0.38rem;
+        border-radius: 8px;
+        background: rgba(80, 99, 77, 0.12);
+        color: #30412d;
+        font-size: 0.95em;
+      }
+
+      pre {
+        margin: 14px 0 18px;
+        padding: 18px 20px;
+        overflow-x: auto;
+        background: #1d1a19;
+        color: #f8eee0;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+
+      pre code {
+        padding: 0;
+        background: transparent;
+        color: inherit;
+      }
+
+      .quote {
+        padding: 18px 20px;
+        margin: 16px 0;
+        border-left: 4px solid var(--accent);
+        background: rgba(178, 74, 27, 0.08);
+        border-radius: 0 16px 16px 0;
+      }
+
+      .foot-links {
+        display: grid;
+        gap: 8px;
+      }
+
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .toc {
+          position: static;
+        }
+
+        .meta-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(calc(100% - 20px), var(--content));
+          padding-top: 14px;
+        }
+
+        .hero,
+        .content-panel,
+        .toc,
+        section {
+          padding: 20px;
+          border-radius: 24px;
+        }
+
+        .meta-grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          max-width: none;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <div class="eyebrow">Google Play Yayın Rehberi</div>
+        <h1>almanya101 Android Uygulaması</h1>
+        <p class="subtitle">
+          Google Play Console üzerinde kişisel geliştirici hesabı açarak almanya101 Android
+          uygulamasını önce test kullanıcılarına, daha sonra production ortamına yayınlamak için
+          izlemen gereken sırayı açıklayan bağımsız rehber.
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta-card">
+            <span class="meta-label">Proje</span>
+            <span class="meta-value"><code>ubterzioglu/app101</code></span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Paket Adı</span>
+            <span class="meta-value"><code>de.almanya101.app</code></span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Hesap Tipi</span>
+            <span class="meta-value">Kişisel geliştirici hesabı</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Hazırlanma Tarihi</span>
+            <span class="meta-value">11 Haziran 2026</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="toc">
+          <h2>İçindekiler</h2>
+          <ol>
+            <li><a href="#amac">Bu rehberin amacı</a></li>
+            <li><a href="#hazirlik">1. Başlamadan önce hazırla</a></li>
+            <li><a href="#hesap">2. Play Console hesabını aç</a></li>
+            <li><a href="#cihaz">3. Cihaz doğrulaması</a></li>
+            <li><a href="#uygulama">4. Uygulamayı oluştur</a></li>
+            <li><a href="#repo">5. Repoyu hazırla</a></li>
+            <li><a href="#apk">6. Preview APK testi</a></li>
+            <li><a href="#aab">7. Production AAB</a></li>
+            <li><a href="#internal">8. Internal testing</a></li>
+            <li><a href="#closed">9. Closed testing</a></li>
+            <li><a href="#listing">10. Store listing</a></li>
+            <li><a href="#settings">11. Store settings</a></li>
+            <li><a href="#content">12. App content</a></li>
+            <li><a href="#technical">13. Teknik kontroller</a></li>
+            <li><a href="#feedback">14. Geri bildirim</a></li>
+            <li><a href="#production-access">15. Production erişimi</a></li>
+            <li><a href="#release">16. Production release</a></li>
+            <li><a href="#submit">17. EAS Submit</a></li>
+            <li><a href="#shortlist">18. Kısa kontrol listesi</a></li>
+            <li><a href="#sources">Resmî kaynaklar</a></li>
+          </ol>
+        </aside>
+
+        <main class="content-panel">
+          <div class="notice">
+            <strong>Önemli not</strong>
+            Uygulama Expo / React Native tabanlıdır. Google Play için production çıktısı APK değil,
+            <strong>AAB</strong> dosyası olacaktır. APK yalnızca telefona doğrudan kurulum ve hızlı
+            test amacıyla kullanılacaktır.
+          </div>
+
+          <section id="amac">
+            <h2>Bu rehberin amacı</h2>
+            <p>
+              Bu dosya Google Play Console üzerinde kişisel geliştirici hesabı açarak almanya101
+              Android uygulamasını önce test kullanıcılarına, daha sonra production ortamına
+              yayınlamak için izlemen gereken sırayı açıklar.
+            </p>
+          </section>
+
+          <section id="hazirlik">
+            <h2>1. Başlamadan önce hazırla</h2>
+            <p>Aşağıdaki maddeleri kayıt sürecine başlamadan önce hazır et:</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Gerekli bilgi veya araç</th>
+                  <th>Açıklama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Google hesabı</td><td>Kişisel Play Console hesabının sahibi olacak Google hesabı</td></tr>
+                <tr><td>Resmî kimlik belgesi</td><td>Google Payments profilin doğrulanmamışsa istenebilir</td></tr>
+                <tr><td>Yasal ad ve adres</td><td>Google Payments profiliyle uyumlu olmalı</td></tr>
+                <tr><td>İletişim telefonu</td><td>Google iletişimi için SMS veya sesli arama ile doğrulanabilir</td></tr>
+                <tr><td>Geliştirici e-postası</td><td>Google Play mağazasında kullanıcıların görebileceği doğrulanmış e-posta</td></tr>
+                <tr><td>Fiziksel Android telefon</td><td>Root edilmemiş ve en az Android 10 çalıştıran telefon</td></tr>
+                <tr><td>Web sitesi</td><td><code>https://almanya101.de</code></td></tr>
+                <tr><td>Gizlilik politikası sayfası</td><td><code>https://almanya101.de/gizlilik</code> adresinin giriş gerektirmeden açıldığını kontrol et</td></tr>
+                <tr><td>İletişim sayfası</td><td><code>https://almanya101.de/iletisim</code> adresinin giriş gerektirmeden açıldığını kontrol et</td></tr>
+                <tr><td>Test kullanıcıları</td><td>En az 12 zorunlu; güvenli marj için 15–20 kişi önerilir</td></tr>
+                <tr><td>Test kullanıcılarının e-postaları</td><td>Gmail veya Google Workspace hesabı olmalı</td></tr>
+                <tr><td>Expo hesabı</td><td>EAS Build için gerekli</td></tr>
+              </tbody>
+            </table>
+
+            <h3>Önemli kişisel hesap kuralı</h3>
+            <p>
+              13 Kasım 2023 sonrasında açılan yeni kişisel geliştirici hesaplarında production
+              erişimi hemen açılmaz. Önce uygulamayı <strong>kapalı testte en az 12 opted-in tester
+              ile en az 14 gün kesintisiz</strong> test etmen gerekir.
+            </p>
+            <p>
+              Bu nedenle 12 kişi yerine 15–20 kişi davet et. Birkaç kişi yanlışlıkla testten
+              ayrılırsa production başvurun gecikmez.
+            </p>
+          </section>
+
+          <section id="hesap">
+            <h2>2. Google Play Console kişisel geliştirici hesabını aç</h2>
+
+            <h3>Adım 2.1 — Play Console kayıt ekranına gir</h3>
+            <pre><code>https://play.google.com/console/signup</code></pre>
+
+            <h3>Adım 2.2 — Hesap tipini seç</h3>
+            <pre><code>Personal / Kişisel</code></pre>
+            <p>
+              Bu seçim senin kullanım senaryona uygundur. Organizasyon hesabı seçme; ek kurumsal
+              doğrulamalar ve D-U-N-S numarası istenebilir.
+            </p>
+
+            <h3>Adım 2.3 — Google Payments profilini bağla</h3>
+            <ul>
+              <li>Mevcut kişisel Google Payments profilini seç veya yeni kişisel profil oluştur.</li>
+              <li>Yasal adını ve adresini kimlik belgenle uyumlu yaz.</li>
+              <li>Tek seferlik geliştirici kayıt ücretini öde.</li>
+              <li>Google doğrulama isterse resmî kimlik belgeni yükle.</li>
+            </ul>
+
+            <h3>Adım 2.4 — İletişim bilgilerini doğrula</h3>
+            <ul>
+              <li>Contact email</li>
+              <li>Contact phone number</li>
+            </ul>
+            <pre><code>+49...</code></pre>
+
+            <h3>Adım 2.5 — Mağazada görünecek geliştirici e-postasını doğrula</h3>
+            <p>
+              Uygulama için ayrı bir destek e-postası oluşturmak daha güvenlidir; bu adresin düzenli
+              kontrol edildiğinden emin ol.
+            </p>
+          </section>
+
+          <section id="cihaz">
+            <h2>3. Fiziksel Android cihaz doğrulamasını tamamla</h2>
+            <p>
+              Yeni kişisel hesaplarda production erişimi için gerçek Android cihaz doğrulaması gerekir.
+            </p>
+
+            <h3>Adım adım cihaz doğrulaması</h3>
+            <ol>
+              <li>Bilgisayarda Play Console hesabına hesap sahibi olarak giriş yap.</li>
+              <li><code>Home</code> sayfasına git.</li>
+              <li><code>Verify that you have access to an Android mobile device</code> görevini bul.</li>
+              <li><code>View details</code> seçeneğine bas.</li>
+              <li>Ekrandaki QR kodu Android telefonunla tara.</li>
+              <li>Telefona Play Console mobil uygulamasını kur veya aç.</li>
+              <li>Aynı Google hesabıyla giriş yap.</li>
+              <li>Kişisel geliştirici hesabını seç.</li>
+              <li><code>Verify</code> seçeneğine bas ve adımları tamamla.</li>
+            </ol>
+
+            <h3>Kullanacağın cihaz</h3>
+            <ul>
+              <li>Fiziksel telefon olmalı</li>
+              <li>Root edilmemiş olmalı</li>
+              <li>En az Android 10 çalıştırmalı</li>
+            </ul>
+            <p>Emülatör kullanma.</p>
+          </section>
+
+          <section id="uygulama">
+            <h2>4. Play Console içinde almanya101 uygulamasını oluştur</h2>
+
+            <h3>Adım 4.1 — Yeni uygulama oluştur</h3>
+            <pre><code>Home &gt; Create app</code></pre>
+
+            <h3>Adım 4.2 — Temel seçimleri yap</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Alan</th>
+                  <th>Seçim</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>App name</td><td><code>almanya101</code></td></tr>
+                <tr><td>Default language</td><td>Türkçe</td></tr>
+                <tr><td>App or game</td><td>App</td></tr>
+                <tr><td>Free or paid</td><td>Free</td></tr>
+                <tr><td>Contact email</td><td>Düzenli kontrol edilen destek e-postası</td></tr>
+              </tbody>
+            </table>
+
+            <h3>Adım 4.3 — Beyanları kabul et</h3>
+            <ul>
+              <li>Developer Program Policies</li>
+              <li>US export laws</li>
+              <li>Play App Signing Terms of Service</li>
+            </ul>
+            <pre><code>Create app</code></pre>
+
+            <div class="quote">
+              <strong>Kritik paket adı notu</strong>
+              Mobil repoda paket adı <code>de.almanya101.app</code> olarak tanımlıdır ve
+              değiştirilmemelidir. İlk AAB yüklendiğinde paket adı kalıcı biçimde sabitlenir.
+            </div>
+          </section>
+
+          <section id="repo">
+            <h2>5. Repoyu Google Play build için hazırla</h2>
+            <p>
+              Önce diğer MD dosyasında verilen ayrıntılı repo promptunu Claude Code veya benzeri
+              kodlama ajanına uygulat:
+            </p>
+            <pre><code>almanya101_app101_repo_google_play_prompt.md</code></pre>
+
+            <h3>Adım 5.1 — Temel kontrolleri çalıştır</h3>
+            <pre><code class="language-powershell">npm install
+npm run verify
+npm run release:check
+npx expo-doctor
+npx expo config --type public</code></pre>
+
+            <h3>Adım 5.2 — EAS CLI kur ve Expo hesabına giriş yap</h3>
+            <pre><code class="language-powershell">npm install --global eas-cli
+eas login
+eas whoami</code></pre>
+
+            <h3>Adım 5.3 — EAS production public environment değerlerini tanımla</h3>
+            <pre><code class="language-powershell">eas env:create --name EXPO_PUBLIC_SUPABASE_URL --value "&lt;SUPABASE_URL&gt;" --environment production --visibility plaintext
+eas env:create --name EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY --value "&lt;SUPABASE_PUBLISHABLE_KEY&gt;" --environment production --visibility plaintext
+eas env:create --name EXPO_PUBLIC_WEB_API_BASE_URL --value "&lt;WEB_API_BASE_URL&gt;" --environment production --visibility plaintext</code></pre>
+
+            <p>Preview build kullanacaksan aynı üç public değişkeni <code>preview</code> ortamında da tanımla:</p>
+            <pre><code class="language-powershell">eas env:create --name EXPO_PUBLIC_SUPABASE_URL --value "&lt;SUPABASE_URL&gt;" --environment preview --visibility plaintext
+eas env:create --name EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY --value "&lt;SUPABASE_PUBLISHABLE_KEY&gt;" --environment preview --visibility plaintext
+eas env:create --name EXPO_PUBLIC_WEB_API_BASE_URL --value "&lt;WEB_API_BASE_URL&gt;" --environment preview --visibility plaintext</code></pre>
+
+            <h3>Güvenlik notu</h3>
+            <pre><code>SUPABASE_SERVICE_ROLE_KEY
+SUPABASE_SECRET_KEY
+ADMIN_PANEL_PASSWORD
+IP_HASH_SALT
+GOOGLE_PLACES_API_KEY
+Google Play service-account JSON private key</code></pre>
+            <p><code>EXPO_PUBLIC_*</code> ile başlayan değişkenler mobil bundle içinde okunabilir durumdadır.</p>
+          </section>
+
+          <section id="apk">
+            <h2>6. Önce APK ile telefonda hızlı test yap</h2>
+            <pre><code class="language-powershell">eas build --platform android --profile preview</code></pre>
+            <p>Build tamamlandıktan sonra Expo tarafından verilen indirme bağlantısından APK dosyasını telefona kur.</p>
+
+            <h3>Telefonda kontrol et</h3>
+            <ul class="checklist">
+              <li>Uygulama açılıyor</li>
+              <li>Ana sayfa açılıyor</li>
+              <li>Haberler açılıyor</li>
+              <li>Haber kaynak linkleri çalışıyor</li>
+              <li>Türkçe hizmet rehberi açılıyor</li>
+              <li>Hizmet sağlayıcı önerme formu çalışıyor</li>
+              <li>Kırık bağlantı bildirimi çalışıyor</li>
+              <li>Vatandaşlık testi çalışıyor</li>
+              <li>Maaş hesaplayıcı beta uyarısı görünüyor</li>
+              <li>İş ilanları açılıyor</li>
+              <li>Harici web linkleri güvenli biçimde açılıyor</li>
+              <li>Gizlilik Politikası ekranı açılıyor</li>
+              <li>Tam Gizlilik Politikası web bağlantısı açılıyor</li>
+              <li>İletişim ekranı açılıyor</li>
+              <li>Android geri tuşu doğru çalışıyor</li>
+              <li>İnternet kapalıyken uygulama kontrollü hata mesajı gösteriyor</li>
+              <li>Daha Fazla ekranında app version ve build bilgisi görünüyor</li>
+            </ul>
+          </section>
+
+          <section id="aab">
+            <h2>7. Google Play için production AAB üret</h2>
+            <pre><code class="language-powershell">eas build --platform android --profile production</code></pre>
+            <p>EAS build tamamlandığında <code>.aab</code> dosyasını indir.</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Dosya</th>
+                  <th>Kullanım</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>APK</td><td>Telefona doğrudan kurulum ve hızlı test</td></tr>
+                <tr><td>AAB</td><td>Google Play Console yüklemesi</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="internal">
+            <h2>8. İlk AAB dosyasını manuel olarak Internal Testing kanalına yükle</h2>
+            <p>Expo EAS Submit otomasyonu daha sonra kurulabilir. İlk Google Play yüklemesini manuel yap.</p>
+
+            <h3>Adım adım internal test release</h3>
+            <pre><code>Testing &gt; Internal testing</code></pre>
+            <ol>
+              <li><code>Create new release</code> seçeneğine bas.</li>
+              <li>İlk release ise Play App Signing adımlarını tamamla.</li>
+              <li>EAS tarafından üretilen <code>.aab</code> dosyasını yükle.</li>
+              <li>Release name alanında build sürümünü kullan.</li>
+              <li>Türkçe release notes yaz.</li>
+              <li><code>Save as draft</code> seçeneğine bas.</li>
+              <li><code>Next</code> seçeneğine bas.</li>
+              <li>Error summary varsa hataları çöz.</li>
+              <li>Release’i internal test kanalında yayınla.</li>
+            </ol>
+
+            <h3>Önerilen ilk release notes</h3>
+            <pre><code>almanya101 Android uygulamasının ilk test sürümü.
+Haberler, Türkçe hizmet rehberi, vatandaşlık testi, maaş hesaplayıcı ve iş ilanları modülleri test edilmektedir.</code></pre>
+
+            <h3>Kendini internal tester olarak ekle</h3>
+            <pre><code>Testing &gt; Internal testing &gt; Testers</code></pre>
+            <ol>
+              <li>Bir e-posta listesi oluştur.</li>
+              <li>Kendi Gmail hesabını ekle.</li>
+              <li>Feedback e-posta adresini ekle.</li>
+              <li>Shareable link bağlantısını kopyala.</li>
+              <li>Telefonda bağlantıyı aç.</li>
+              <li>Teste katıl.</li>
+              <li>Google Play üzerinden uygulamayı yükle.</li>
+            </ol>
+          </section>
+
+          <section id="closed">
+            <h2>9. Zorunlu Closed Testing kanalını başlat</h2>
+            <p>
+              Yeni kişisel geliştirici hesabında production erişimi için kapalı test zorunludur.
+            </p>
+
+            <h3>Önemli tester ayrımı</h3>
+            <p>
+              Internal testte bulunan bir kullanıcı closed test sürümünü alamaz. Aynı kişiyi closed
+              testte kullanmak istiyorsan önce internal testten çıkması, ardından closed test opt-in
+              bağlantısından katılması gerekir.
+            </p>
+            <ul>
+              <li>Internal test için yalnızca kendini ve 1–2 yakın tester kullan.</li>
+              <li>Closed test için ayrı 15–20 kişilik liste oluştur.</li>
+            </ul>
+
+            <h3>Adım 9.1 — Closed test track aç</h3>
+            <pre><code>Testing &gt; Closed testing</code></pre>
+            <ol>
+              <li>Başlangıç closed track seçeneğine gir veya yeni track oluştur.</li>
+              <li>Track adı olarak örneğin <code>almanya101-beta</code> kullan.</li>
+              <li><code>Manage track</code> seçeneğine gir.</li>
+              <li><code>Testers</code> sekmesine geç.</li>
+              <li><code>Create email list</code> seçeneğine bas.</li>
+              <li>Liste adı olarak <code>almanya101-closed-beta</code> yaz.</li>
+              <li>En az 15–20 tester Gmail veya Google Workspace adresini ekle.</li>
+              <li>Feedback e-posta adresini veya feedback URL adresini ekle.</li>
+              <li>Shareable opt-in bağlantısını kopyala.</li>
+            </ol>
+
+            <h3>Adım 9.2 — Closed test release oluştur</h3>
+            <ol>
+              <li><code>Create new release</code> seçeneğine bas.</li>
+              <li>Internal testte kullandığın AAB dosyasını seç veya yeni production AAB yükle.</li>
+              <li>Release notes ekle.</li>
+              <li><code>Next</code> seçeneğine bas.</li>
+              <li>Hataları kontrol et.</li>
+              <li>Closed test rollout işlemini başlat.</li>
+            </ol>
+
+            <h3>Adım 9.3 — Tester mesajını gönder</h3>
+            <pre><code>Merhaba,
+
+almanya101 Android uygulamasının kapalı test sürecine katılmak için aşağıdaki bağlantıyı Android telefonunuzda Google hesabınız açıkken açabilir misiniz?
+
+&lt;OPT-IN-LINK&gt;
+
+Bağlantıyı açtıktan sonra teste katılmanız ve uygulamayı Google Play üzerinden yüklemeniz gerekiyor.
+
+Önemli rica: Google Play production başvurusu için testten en az 14 gün boyunca çıkmamanız gerekiyor. Uygulamayı farklı ekranlarda deneyip gördüğünüz hataları bana iletebilirsiniz.
+
+Teşekkürler.</code></pre>
+
+            <h3>14 günlük kritik takip</h3>
+            <pre><code>Testing &gt; Closed testing &gt; Manage track &gt; Testers</code></pre>
+            <table>
+              <thead>
+                <tr>
+                  <th>Gün</th>
+                  <th>Opted-in tester sayısı</th>
+                  <th>Aktif hata</th>
+                  <th>Yeni build yüklendi mi?</th>
+                  <th>Not</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Gün 1</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 2</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 3</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 4</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 5</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 6</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 7</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 8</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 9</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 10</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 11</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 12</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 13</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>Gün 14</td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+            <p>En az 12 tester 14 gün kesintisiz opted-in kalmalıdır.</p>
+          </section>
+
+          <section id="listing">
+            <h2>10. Store Listing bilgilerini tamamla</h2>
+            <pre><code>Grow users &gt; Store presence &gt; Main store listing</code></pre>
+
+            <h3>Temel metinler</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Alan</th>
+                  <th>Sınır</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>App name</td><td>30 karakter</td></tr>
+                <tr><td>Short description</td><td>80 karakter</td></tr>
+                <tr><td>Full description</td><td>4000 karakter</td></tr>
+              </tbody>
+            </table>
+
+            <h3>Önerilen kısa açıklama taslağı</h3>
+            <pre><code>Almanya'daki Türkler için haberler, rehberler ve pratik araçlar.</code></pre>
+
+            <h3>Grafik dosyaları</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Varlık</th>
+                  <th>Zorunluluk</th>
+                  <th>Gereksinim</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>App icon</td><td>Zorunlu</td><td>512 × 512 px, 32-bit PNG, en fazla 1024 KB</td></tr>
+                <tr><td>Feature graphic</td><td>Zorunlu</td><td>1024 × 500 px, JPEG veya 24-bit PNG, alpha yok</td></tr>
+                <tr><td>Telefon screenshot</td><td>Zorunlu</td><td>Minimum 2; önerilen en az 4 adet 1080 × 1920 portrait</td></tr>
+                <tr><td>Preview video</td><td>Opsiyonel</td><td>YouTube public veya unlisted URL</td></tr>
+              </tbody>
+            </table>
+
+            <h3>Önerilen screenshot sırası</h3>
+            <ol>
+              <li>Ana sayfa</li>
+              <li>Haberler</li>
+              <li>Türkçe hizmet rehberi</li>
+              <li>Vatandaşlık testi</li>
+              <li>Maaş hesaplayıcı</li>
+              <li>İş ilanları</li>
+            </ol>
+
+            <h3>Kullanma</h3>
+            <pre><code>En iyi
+1 numara
+Hemen indir
+Ücretsiz indir
+Milyonlarca kullanıcı</code></pre>
+          </section>
+
+          <section id="settings">
+            <h2>11. Store Settings bilgilerini tamamla</h2>
+            <pre><code>Grow users &gt; Store presence &gt; Store settings</code></pre>
+            <table>
+              <thead>
+                <tr>
+                  <th>Alan</th>
+                  <th>Değer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Category</td><td>Öncelikle <code>Lifestyle</code> seçeneğini değerlendir</td></tr>
+                <tr><td>Tags</td><td>Uygulamanın gerçek içeriğine uygun etiketler</td></tr>
+                <tr><td>Contact email</td><td>Zorunlu destek e-postası</td></tr>
+                <tr><td>Website</td><td><code>https://almanya101.de</code></td></tr>
+                <tr><td>Phone</td><td>İstersen ekle</td></tr>
+              </tbody>
+            </table>
+
+            <h3>Neden Lifestyle değerlendirilmeli?</h3>
+            <p>
+              almanya101 yalnızca haber uygulaması değildir. Haberler yanında Türkçe hizmet rehberi,
+              vatandaşlık testi, maaş hesaplayıcı ve iş ilanları gibi araçlar sunar.
+            </p>
+          </section>
+
+          <section id="content">
+            <h2>12. App Content beyanlarını tamamla</h2>
+            <pre><code>Policy and programs &gt; App content</code></pre>
+
+            <h3>Adım 12.1 — Privacy Policy</h3>
+            <pre><code>Privacy Policy &gt; Start</code></pre>
+            <pre><code>https://almanya101.de/gizlilik</code></pre>
+            <ul>
+              <li>Herkese açık olduğunu</li>
+              <li>Login gerektirmediğini</li>
+              <li>Mobil tarayıcıda açıldığını</li>
+              <li>Uygulama veri akışlarını doğru anlattığını</li>
+            </ul>
+
+            <h3>Adım 12.2 — Ads</h3>
+            <p>İlk sürümde reklam veya reklam SDK paketi eklenmediyse:</p>
+            <pre><code>No</code></pre>
+
+            <h3>Adım 12.3 — App access</h3>
+            <p>İlk sürümde genel kullanıcı login sistemi yoksa bütün ekranların erişilebilir olduğunu belirt.</p>
+
+            <h3>Adım 12.4 — Target audience and content</h3>
+            <p>
+              almanya101 yetişkin kullanıcılara yöneliktir. Çocukları hedef kitleye dahil etmek ek
+              Families Policy yükümlülükleri getirir.
+            </p>
+
+            <h3>Adım 12.5 — Content rating</h3>
+            <p>Content rating anketini eksiksiz doldur.</p>
+
+            <h3>Adım 12.6 — Data Safety</h3>
+            <pre><code>docs/google-play/DATA_SAFETY_INVENTORY.md
+docs/google-play/BACKEND_PRIVACY_QUESTIONS.md</code></pre>
+            <ul>
+              <li>Hizmet sağlayıcı önerisi formunda gönderilen alanlar</li>
+              <li>Kırık bağlantı bildiriminde gönderilen alanlar</li>
+              <li>Backend saklama süresi</li>
+              <li>API veya hosting IP logları</li>
+              <li>Supabase davranışı</li>
+              <li>Kullanılan üçüncü taraf SDK paketleri</li>
+              <li>Android izinleri</li>
+              <li>Verilerin silinmesi için iletişim yöntemi</li>
+            </ul>
+
+            <h3>Hesap silme notu</h3>
+            <p>İlk sürümde kullanıcı hesabı oluşturma özelliği yoksa hesap silme ekranı zorunlu değildir.</p>
+            <ol>
+              <li>Uygulama içinde hesap silme yolu</li>
+              <li>Uygulama dışında erişilebilen web tabanlı hesap silme talep bağlantısı</li>
+            </ol>
+
+            <h3>Adım 12.7 — News and Magazine apps</h3>
+            <p>
+              Uygulamayı <code>Lifestyle</code> kategorisinde genel yaşam platformu olarak yayınlıyorsan
+              haber modülünün varlığını saklama fakat uygulamayı yanlış biçimde yalnızca haber
+              uygulaması olarak beyan etme.
+            </p>
+          </section>
+
+          <section id="technical">
+            <h2>13. AAB sonrasında teknik kontrolleri yap</h2>
+            <pre><code>Test and release &gt; App bundle explorer</code></pre>
+            <ul class="checklist">
+              <li>Paket adı de.almanya101.app</li>
+              <li>Version code artmış</li>
+              <li>Target API en az API 35</li>
+              <li>Gereksiz hassas Android izni yok</li>
+              <li>App Bundle işlenmiş</li>
+              <li>Download size normal</li>
+              <li>Pre-launch report kritik hata göstermiyor</li>
+            </ul>
+          </section>
+
+          <section id="feedback">
+            <h2>14. Closed test sırasında geri bildirim topla</h2>
+            <p>
+              Tester geri bildirimlerini kayıt altına al. Production erişimi başvurusunda Google
+              senden test sürecini ve yapılan iyileştirmeleri açıklamanı isteyecektir.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tarih</th>
+                  <th>Tester</th>
+                  <th>Cihaz</th>
+                  <th>Android sürümü</th>
+                  <th>App version</th>
+                  <th>Build</th>
+                  <th>Senaryo</th>
+                  <th>Sonuç</th>
+                  <th>Hata</th>
+                  <th>Yapılan düzeltme</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="10">Kayıt tablosu burada tutulabilir.</td></tr>
+              </tbody>
+            </table>
+
+            <ul class="checklist">
+              <li>Ana sayfa</li>
+              <li>Haber listesi</li>
+              <li>Haber detayı ve kaynak linki</li>
+              <li>Türkçe hizmet rehberi filtreleri</li>
+              <li>Hizmet sağlayıcı önerisi formu</li>
+              <li>Kırık link bildirme</li>
+              <li>Vatandaşlık testi</li>
+              <li>Maaş hesaplama beta davranışı</li>
+              <li>İş ilanları</li>
+              <li>Harici URL açma</li>
+              <li>Offline kullanım</li>
+              <li>Yavaş internet</li>
+              <li>Android geri tuşu</li>
+              <li>Küçük ekran</li>
+              <li>Büyük ekran</li>
+            </ul>
+          </section>
+
+          <section id="production-access">
+            <h2>15. 14 gün sonunda production erişimine başvur</h2>
+            <pre><code>Apply for production</code></pre>
+            <p>Google senden üç bölümde bilgi ister:</p>
+
+            <h3>Bölüm 1 — About your closed test</h3>
+            <ul>
+              <li>Testerları nasıl buldun?</li>
+              <li>Testerlar uygulamanın hangi özelliklerini kullandı?</li>
+              <li>Test kullanımı gerçek kullanıcı davranışına benzedi mi?</li>
+              <li>Hangi geri bildirimleri aldın?</li>
+              <li>Geri bildirimleri nasıl topladın?</li>
+            </ul>
+
+            <h3>Bölüm 2 — About your app</h3>
+            <ul>
+              <li>Hedef kullanıcı kitlesi kim?</li>
+              <li>Uygulama kullanıcıya nasıl değer sağlıyor?</li>
+              <li>İlk yılda beklenen yaklaşık indirme aralığı nedir?</li>
+            </ul>
+            <pre><code>almanya101, Almanya'da yaşayan veya Almanya'ya taşınmayı planlayan Türkçe konuşan kullanıcılara haberler, Türkçe hizmet rehberi, vatandaşlık testi, maaş hesaplama aracı ve iş ilanları sunarak günlük bilgiye tek noktadan erişim sağlar.</code></pre>
+
+            <h3>Bölüm 3 — Production readiness</h3>
+            <ul>
+              <li>Kapalı testten sonra hangi hataları düzelttin?</li>
+              <li>Hangi kullanıcı deneyimi iyileştirmelerini yaptın?</li>
+              <li>Uygulamanın production ortamına hazır olduğuna nasıl karar verdin?</li>
+            </ul>
+            <p>
+              Google başvuruyu inceler. Resmî yardım sayfasında bu incelemenin genellikle 7 gün veya
+              daha kısa sürdüğü, zaman zaman daha uzun sürebileceği belirtilir.
+            </p>
+          </section>
+
+          <section id="release">
+            <h2>16. Production release oluştur</h2>
+            <pre><code>Test and release &gt; Production</code></pre>
+            <ol>
+              <li><code>Create new release</code> seçeneğine bas.</li>
+              <li>Son onaylı production AAB dosyasını seç veya yeni AAB yükle.</li>
+              <li>Release notes ekle.</li>
+              <li>Ülke veya bölge dağıtımını kontrol et.</li>
+              <li>Fiyatın <code>Free</code> olduğunu kontrol et.</li>
+              <li>App content beyanlarının güncel olduğunu kontrol et.</li>
+              <li>Store listing varlıklarının güncel olduğunu kontrol et.</li>
+              <li>Error summary varsa çöz.</li>
+              <li>Preview and confirm ekranını kontrol et.</li>
+              <li>Production rollout işlemini başlat.</li>
+            </ol>
+          </section>
+
+          <section id="submit">
+            <h2>17. İlk manuel yüklemeden sonra EAS Submit otomasyonu opsiyonel</h2>
+            <p>İlk Google Play yüklemesi manuel yapılmalıdır. Daha sonraki sürümlerde EAS Submit kullanılabilir.</p>
+            <pre><code>GitHub reposuna commit edilmemeli
+EXPO_PUBLIC environment içine konulmamalı
+WhatsApp veya herkese açık kanallarda paylaşılmamalı</code></pre>
+            <pre><code class="language-powershell">eas credentials --platform android</code></pre>
+            <p>Otomatik submit komutu:</p>
+            <pre><code class="language-powershell">eas submit --platform android --profile production</code></pre>
+          </section>
+
+          <section id="shortlist">
+            <h2>18. Kısa kontrol listesi</h2>
+
+            <h3>Hesap</h3>
+            <ul class="checklist">
+              <li>Personal Play Console hesabı açıldı</li>
+              <li>Google Payments profili bağlandı</li>
+              <li>Kimlik doğrulaması tamamlandı veya gerekli olmadığı doğrulandı</li>
+              <li>Contact email doğrulandı</li>
+              <li>Contact phone doğrulandı</li>
+              <li>Store üzerinde görünecek geliştirici e-postası doğrulandı</li>
+              <li>Fiziksel Android cihaz doğrulaması tamamlandı</li>
+            </ul>
+
+            <h3>Repo ve build</h3>
+            <ul class="checklist">
+              <li>Repo hazırlık promptundaki değişiklikler uygulandı</li>
+              <li><code>npm run verify</code> başarılı</li>
+              <li><code>npm run release:check</code> başarılı</li>
+              <li><code>npx expo-doctor</code> kritik hata vermiyor</li>
+              <li>EAS production public environment değerleri tanımlandı</li>
+              <li>Preview APK telefonda test edildi</li>
+              <li>Production AAB üretildi</li>
+              <li>İlk AAB manuel yüklendi</li>
+              <li>Paket adı de.almanya101.app</li>
+              <li>Target API en az 35</li>
+            </ul>
+
+            <h3>Store Listing</h3>
+            <ul class="checklist">
+              <li>App name girildi</li>
+              <li>Short description girildi</li>
+              <li>Full description girildi</li>
+              <li>512 × 512 ikon yüklendi</li>
+              <li>1024 × 500 feature graphic yüklendi</li>
+              <li>En az 4 önerilen telefon screenshot yüklendi</li>
+              <li>Screenshot alt text alanları dolduruldu</li>
+              <li>Website girildi</li>
+              <li>Support email girildi</li>
+              <li>Category seçildi</li>
+            </ul>
+
+            <h3>App Content</h3>
+            <ul class="checklist">
+              <li>Privacy Policy URL girildi</li>
+              <li>Ads beyanı doğru girildi</li>
+              <li>App access beyanı doğru girildi</li>
+              <li>Target audience doğru girildi</li>
+              <li>Content rating anketi tamamlandı</li>
+              <li>Data Safety backend doğrulaması sonrası tamamlandı</li>
+              <li>News and Magazine kararı dürüst biçimde verildi</li>
+            </ul>
+
+            <h3>Closed test</h3>
+            <ul class="checklist">
+              <li>Closed testing track oluşturuldu</li>
+              <li>15–20 tester davet edildi</li>
+              <li>En az 12 tester opted-in oldu</li>
+              <li>En az 12 tester 14 gün kesintisiz opted-in kaldı</li>
+              <li>Tester geri bildirimleri kaydedildi</li>
+              <li>Hatalar düzeltildi</li>
+              <li>Production access başvurusu gönderildi</li>
+            </ul>
+
+            <h3>Production</h3>
+            <ul class="checklist">
+              <li>Production erişimi kabul edildi</li>
+              <li>Son AAB seçildi</li>
+              <li>Release notes girildi</li>
+              <li>Ülke dağıtımı kontrol edildi</li>
+              <li>Production rollout başlatıldı</li>
+            </ul>
+          </section>
+
+          <section id="sources">
+            <h2>Resmî kaynaklar</h2>
+            <div class="foot-links">
+              <a href="https://support.google.com/googleplay/android-developer/answer/14151465?hl=en">Google Play kişisel hesap test zorunluluğu</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/10841920?hl=en">Google Play geliştirici kimlik doğrulaması</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/14316361?hl=en">Google Play cihaz doğrulaması</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/9859152?hl=en">Google Play uygulama oluşturma</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/9859348?hl=en">Google Play release oluşturma</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/9845334?hl=en">Google Play test kanalları</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/9859455?hl=en">Google Play review hazırlığı</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/10787469?hl=en">Google Play Data Safety</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/13327111?hl=en">Google Play hesap silme gereksinimi</a>
+              <a href="https://developer.android.com/google/play/requirements/target-sdk">Google Play target API seviyesi</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/9866151?hl=en">Google Play preview assets</a>
+              <a href="https://support.google.com/googleplay/android-developer/answer/9935326?hl=en">Google Play News &amp; Magazines</a>
+              <a href="https://docs.expo.dev/build/setup/">Expo EAS Build başlangıç</a>
+              <a href="https://docs.expo.dev/build-reference/apk/">Expo Android APK ve AAB farkı</a>
+              <a href="https://docs.expo.dev/eas/environment-variables/">Expo EAS environment variables</a>
+              <a href="https://docs.expo.dev/submit/android/">Expo Android Google Play submit</a>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
