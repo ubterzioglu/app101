@@ -34,6 +34,9 @@ const IGNORED_CONTENT_SCAN = new Set([
   SELF,
   'scripts/sync-local-env.mjs',
   'tests/unit/env-allowlist.test.ts',
+  // Yayın rehberi dokümanları: taranan desenleri örnek olarak içerirler.
+  'almanya101_app101_repo_google_play_prompt.md',
+  'almanya101_google_play_kisisel_hesap_adim_adim.md',
 ]);
 
 const SECRET_VALUE_PATTERN =
