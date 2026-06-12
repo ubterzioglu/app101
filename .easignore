@@ -67,3 +67,8 @@ __scaffold/
 # EAS upload paketine gerek olmayan içerikler
 /docs
 /coverage
+
+# Yayın rehberi dokümanları — EAS build paketine gerek yok
+/almanya101_*.md
+/almanya101_*.html
+*.pdf
