@@ -18,7 +18,7 @@ export function AppTextInput({ label, error, required, style, ...rest }: AppText
         </Text>
       ) : null}
       <TextInput
-        placeholderTextColor={colors.gray400}
+        placeholderTextColor={colors.textMuted}
         style={[styles.input, error ? styles.inputError : null, style]}
         accessibilityLabel={label}
         {...rest}
@@ -35,29 +35,29 @@ const styles = StyleSheet.create({
   label: {
     fontSize: fontSize.sm,
     fontWeight: fontWeight.medium,
-    color: colors.gray700,
+    color: colors.textSecondary,
     marginBottom: spacing.xs,
   },
   required: {
-    color: colors.red,
+    color: colors.error,
   },
   input: {
     minHeight: 48,
     borderWidth: 1,
-    borderColor: colors.gray300,
+    borderColor: colors.border,
     borderRadius: radius.md,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     fontSize: fontSize.md,
-    color: colors.gray900,
-    backgroundColor: colors.white,
+    color: colors.textPrimary,
+    backgroundColor: colors.surface3,
   },
   inputError: {
-    borderColor: colors.red,
+    borderColor: colors.error,
   },
   error: {
     fontSize: fontSize.xs,
-    color: colors.red,
+    color: colors.error,
     marginTop: spacing.xs,
   },
 });

@@ -15,16 +15,16 @@ interface AppButtonProps {
 }
 
 const VARIANT_BG: Record<Variant, string> = {
-  primary: colors.blue,
-  secondary: colors.green,
+  primary: colors.accent,
+  secondary: colors.success,
   outline: 'transparent',
-  danger: colors.red,
+  danger: colors.error,
 };
 
 const VARIANT_TEXT: Record<Variant, string> = {
-  primary: colors.white,
+  primary: colors.textInverse,
   secondary: colors.white,
-  outline: colors.blue,
+  outline: colors.accent,
   danger: colors.white,
 };
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   outline: {
     borderWidth: 2,
-    borderColor: colors.blue,
+    borderColor: colors.accent,
   },
   fullWidth: {
     alignSelf: 'stretch',

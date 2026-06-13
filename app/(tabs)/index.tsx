@@ -90,13 +90,13 @@ const styles = StyleSheet.create({
   motto: {
     marginTop: spacing.xs,
     fontSize: fontSize.sm,
-    color: colors.gray500,
+    color: colors.textSecondary,
     textAlign: 'center',
   },
   sectionTitle: {
     fontSize: fontSize.lg,
     fontWeight: fontWeight.bold,
-    color: colors.gray900,
+    color: colors.textPrimary,
     marginTop: spacing.lg,
     marginBottom: spacing.md,
   },
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   quickLabel: {
     fontSize: fontSize.sm,
     fontWeight: fontWeight.semibold,
-    color: colors.gray800,
+    color: colors.textPrimary,
     textAlign: 'center',
   },
   toolList: { gap: spacing.sm },
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
   },
   toolIcon: { fontSize: 22, marginRight: spacing.md },
-  toolLabel: { flex: 1, fontSize: fontSize.md, color: colors.gray800 },
-  chevron: { fontSize: fontSize.xl, color: colors.gray400 },
+  toolLabel: { flex: 1, fontSize: fontSize.md, color: colors.textPrimary },
+  chevron: { fontSize: fontSize.xl, color: colors.textMuted },
   websiteCta: { marginTop: spacing.xl },
 });

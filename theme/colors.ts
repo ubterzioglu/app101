@@ -1,32 +1,39 @@
-// Google color palette — preserved from the web app (almanya101).
-
 export const colors = {
-  blue: '#4285F4',
-  red: '#EA4335',
-  yellow: '#FBBC05',
-  green: '#34A853',
-  orange: '#FF9500',
+  // Brand palette — yellow / black / white dark theme
+  yellow: '#F5C518',
+  yellowLight: '#FFD740',
+  yellowDim: '#C49A10',
+
   black: '#000000',
   white: '#FFFFFF',
 
-  // Neutral gray scale (aligned with the web app's tokens).
-  gray50: '#F9FAFB',
-  gray100: '#F3F4F6',
-  gray200: '#E5E7EB',
-  gray300: '#D1D5DB',
-  gray400: '#9CA3AF',
-  gray500: '#6B7280',
-  gray600: '#4B5563',
-  gray700: '#374151',
-  gray800: '#1F2937',
-  gray900: '#111827',
+  // Dark surface scale
+  surface0: '#000000',  // page background
+  surface1: '#111111',  // card / panel
+  surface2: '#1A1A1A',  // elevated card
+  surface3: '#242424',  // input background
+  surface4: '#2E2E2E',  // hover / pressed
+
+  // Border scale
+  border: '#2E2E2E',
+  borderStrong: '#444444',
+
+  // Text scale
+  textPrimary: '#FFFFFF',
+  textSecondary: '#AAAAAA',
+  textMuted: '#666666',
+  textInverse: '#000000',
 
   // Semantic
   background: '#000000',
-  surface: '#FFFFFF',
-  textPrimary: '#111827',
-  textSecondary: '#6B7280',
-  border: '#E5E7EB',
+  surface: '#111111',
+  accent: '#F5C518',
+  accentPressed: '#C49A10',
+
+  // Status
+  error: '#FF4444',
+  success: '#00C851',
+  warning: '#F5C518',
 } as const;
 
 export type ColorToken = keyof typeof colors;

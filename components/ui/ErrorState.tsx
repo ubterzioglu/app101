@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSize.lg,
     fontWeight: fontWeight.bold,
-    color: colors.gray900,
+    color: colors.textPrimary,
     textAlign: 'center',
   },
-  message: { fontSize: fontSize.sm, color: colors.gray500, textAlign: 'center' },
+  message: { fontSize: fontSize.sm, color: colors.textSecondary, textAlign: 'center' },
   action: { marginTop: spacing.md },
 });

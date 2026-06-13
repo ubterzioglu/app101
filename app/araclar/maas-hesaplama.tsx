@@ -106,7 +106,7 @@ export default function SalaryScreen() {
         </View>
 
         <AppCard
-          accentColor={colors.blue}
+          accentColor={colors.accent}
           onPress={() => setShowInfo(!showInfo)}
           accessibilityLabel="Nasıl Çalışır?"
         >
@@ -336,27 +336,27 @@ export default function SalaryScreen() {
         {result ? (
           <>
             <View style={styles.resultsGrid}>
-              <AppCard accentColor={colors.green} style={styles.resultCardSmall}>
+              <AppCard accentColor={colors.success} style={styles.resultCardSmall}>
                 <Text style={styles.resultLabel}>Net (Aylık)</Text>
                 <Text style={styles.resultNet}>{formatCurrency(result.netMonthly)}</Text>
               </AppCard>
-              <AppCard accentColor={colors.green} style={styles.resultCardSmall}>
+              <AppCard accentColor={colors.success} style={styles.resultCardSmall}>
                 <Text style={styles.resultLabel}>Net (Yıllık)</Text>
                 <Text style={styles.resultNet}>{formatCurrency(result.netYearly)}</Text>
               </AppCard>
-              <AppCard accentColor={colors.blue} style={styles.resultCardSmall}>
+              <AppCard accentColor={colors.accent} style={styles.resultCardSmall}>
                 <Text style={styles.resultLabel}>Brüt (Aylık)</Text>
                 <Text style={styles.resultValue}>{formatCurrency(result.grossMonthly)}</Text>
               </AppCard>
-              <AppCard accentColor={colors.blue} style={styles.resultCardSmall}>
+              <AppCard accentColor={colors.accent} style={styles.resultCardSmall}>
                 <Text style={styles.resultLabel}>Brüt (Yıllık)</Text>
                 <Text style={styles.resultValue}>{formatCurrency(result.grossYearly)}</Text>
               </AppCard>
-              <AppCard accentColor={colors.red} style={styles.resultCardSmall}>
+              <AppCard accentColor={colors.error} style={styles.resultCardSmall}>
                 <Text style={styles.resultLabel}>Kesinti (Aylık)</Text>
                 <Text style={styles.resultValue}>{formatCurrency(result.deductionsMonthly)}</Text>
               </AppCard>
-              <AppCard accentColor={colors.red} style={styles.resultCardSmall}>
+              <AppCard accentColor={colors.error} style={styles.resultCardSmall}>
                 <Text style={styles.resultLabel}>Kesinti (Yıllık)</Text>
                 <Text style={styles.resultValue}>{formatCurrency(result.deductionsYearly)}</Text>
               </AppCard>
@@ -424,31 +424,31 @@ function BreakdownRow({ label, value }: { label: string; value: number }) {
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, paddingBottom: spacing.xxl, gap: spacing.md },
   betaBox: {
-    backgroundColor: '#FFF7E6',
+    backgroundColor: colors.surface2,
     borderWidth: 1,
-    borderColor: colors.orange,
+    borderColor: colors.warning,
     borderRadius: radius.md,
     padding: spacing.md,
   },
-  betaTitle: { fontSize: fontSize.sm, fontWeight: fontWeight.bold, color: colors.orange },
-  betaText: { fontSize: fontSize.xs, color: colors.gray700, marginTop: spacing.xs },
-  sectionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900, marginBottom: spacing.md },
+  betaTitle: { fontSize: fontSize.sm, fontWeight: fontWeight.bold, color: colors.warning },
+  betaText: { fontSize: fontSize.xs, color: colors.textSecondary, marginTop: spacing.xs },
+  sectionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary, marginBottom: spacing.md },
   toggleRow: { flexDirection: 'row', gap: spacing.md, marginBottom: spacing.md },
   toggleGroup: { flex: 1 },
-  toggleLabel: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.gray700, marginBottom: spacing.xs },
+  toggleLabel: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.textSecondary, marginBottom: spacing.xs },
   toggle: {
     flexDirection: 'row',
-    backgroundColor: colors.gray100,
+    backgroundColor: colors.surface1,
     borderRadius: radius.md,
     padding: 3,
     marginBottom: spacing.md,
   },
   toggleBtn: { flex: 1, paddingVertical: spacing.sm, borderRadius: radius.sm, alignItems: 'center' },
-  toggleActive: { backgroundColor: colors.blue },
-  toggleActiveSmall: { backgroundColor: colors.blue },
-  toggleText: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.gray600 },
-  toggleTextSmall: { fontSize: fontSize.xs, fontWeight: fontWeight.medium, color: colors.gray600 },
-  toggleTextActive: { color: colors.white },
+  toggleActive: { backgroundColor: colors.accent },
+  toggleActiveSmall: { backgroundColor: colors.accent },
+  toggleText: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.textSecondary },
+  toggleTextSmall: { fontSize: fontSize.xs, fontWeight: fontWeight.medium, color: colors.textSecondary },
+  toggleTextActive: { color: colors.textInverse },
   switchRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -461,12 +461,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: spacing.xl,
   },
-  switchLabel: { fontSize: fontSize.md, color: colors.gray800 },
+  switchLabel: { fontSize: fontSize.md, color: colors.textPrimary },
   row2: { flexDirection: 'row', gap: spacing.md },
   row2Item: { flex: 1 },
   subSection: {
     borderWidth: 1,
-    borderColor: colors.gray200,
+    borderColor: colors.border,
     borderRadius: radius.md,
     padding: spacing.md,
     marginBottom: spacing.md,
@@ -474,20 +474,20 @@ const styles = StyleSheet.create({
   calcBtn: { marginTop: spacing.md },
   resultsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   resultCardSmall: { flex: 1, minWidth: '45%', padding: spacing.md },
-  resultLabel: { fontSize: fontSize.xs, color: colors.gray500 },
-  resultNet: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.green, marginTop: spacing.xs },
-  resultValue: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900, marginTop: spacing.xs },
-  divider: { height: 1, backgroundColor: colors.gray200, marginVertical: spacing.md },
+  resultLabel: { fontSize: fontSize.xs, color: colors.textSecondary },
+  resultNet: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.success, marginTop: spacing.xs },
+  resultValue: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary, marginTop: spacing.xs },
+  divider: { height: 1, backgroundColor: colors.surface2, marginVertical: spacing.md },
   row: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: spacing.xs, gap: spacing.sm },
-  rowLabel: { fontSize: fontSize.sm, color: colors.gray600, flex: 1 },
-  rowValue: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.gray900 },
+  rowLabel: { fontSize: fontSize.sm, color: colors.textSecondary, flex: 1 },
+  rowValue: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.textPrimary },
   infoHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  infoHeaderText: { fontSize: fontSize.md, fontWeight: fontWeight.semibold, color: colors.gray900 },
-  chevron: { color: colors.blue, fontSize: fontSize.xl },
+  infoHeaderText: { fontSize: fontSize.md, fontWeight: fontWeight.semibold, color: colors.textPrimary },
+  chevron: { color: colors.accent, fontSize: fontSize.xl },
   chevronOpen: { transform: [{ rotate: '180deg' }] },
-  infoBody: { marginTop: spacing.md, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.gray200 },
-  infoItem: { fontSize: fontSize.sm, color: colors.gray700, lineHeight: 20, marginBottom: spacing.xs },
+  infoBody: { marginTop: spacing.md, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.surface2 },
+  infoItem: { fontSize: fontSize.sm, color: colors.textSecondary, lineHeight: 20, marginBottom: spacing.xs },
   infoBold: { fontWeight: fontWeight.bold },
   breakdownBody: { marginTop: spacing.md },
-  breakdownSectionTitle: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.gray900, marginBottom: spacing.xs, marginTop: spacing.xs },
+  breakdownSectionTitle: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.textPrimary, marginBottom: spacing.xs, marginTop: spacing.xs },
 });

@@ -102,7 +102,7 @@ export default function HaberlerScreen() {
           <NewsCard article={item} onPress={() => router.push(`/haberler/${item.slug}`)} />
         )}
         refreshControl={
-          <RefreshControl refreshing={isRefetching} onRefresh={() => refetch()} tintColor={colors.blue} />
+          <RefreshControl refreshing={isRefetching} onRefresh={() => refetch()} tintColor={colors.accent} />
         }
         ListEmptyComponent={
           visible.hero ? null : (
@@ -140,13 +140,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.white,
+    backgroundColor: colors.surface1,
     borderWidth: 1,
     borderColor: colors.border,
   },
-  chipActive: { backgroundColor: colors.blue, borderColor: colors.blue },
-  chipText: { fontSize: fontSize.sm, color: colors.gray700, fontWeight: fontWeight.medium },
-  chipTextActive: { color: colors.white },
+  chipActive: { backgroundColor: colors.accent, borderColor: colors.accent },
+  chipText: { fontSize: fontSize.sm, color: colors.textSecondary, fontWeight: fontWeight.medium },
+  chipTextActive: { color: colors.textInverse },
   footer: {
     paddingTop: spacing.sm,
     paddingBottom: spacing.md,

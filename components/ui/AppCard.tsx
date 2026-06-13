@@ -39,7 +39,7 @@ export function AppCard({ children, onPress, accentColor, style, accessibilityLa
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.surface1,
     borderRadius: radius.lg,
     padding: spacing.lg,
   },

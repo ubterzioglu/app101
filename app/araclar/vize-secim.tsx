@@ -13,11 +13,11 @@ import type { VisaResult } from '@/features/recommendations/visa/data';
 import { colors, fontSize, fontWeight, radius, spacing, MIN_TOUCH_TARGET } from '@/theme';
 
 const RESULT_COLOR: Record<VisaResult['color'], string> = {
-  blue: colors.blue,
-  green: colors.green,
+  blue: colors.accent,
+  green: colors.success,
   yellow: colors.yellow,
-  orange: colors.orange,
-  red: colors.red,
+  orange: colors.warning,
+  red: colors.error,
 };
 
 export default function VisaScreen() {
@@ -95,7 +95,7 @@ export default function VisaScreen() {
           </>
         ) : question ? (
           <>
-            <AppCard accentColor={colors.blue} style={styles.questionCard}>
+            <AppCard accentColor={colors.accent} style={styles.questionCard}>
               <Text style={styles.questionText}>{question.text}</Text>
               {question.hint ? <Text style={styles.hint}>{question.hint}</Text> : null}
               <View style={styles.options}>
@@ -128,25 +128,25 @@ export default function VisaScreen() {
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
   questionCard: { gap: spacing.sm },
-  questionText: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900 },
-  hint: { fontSize: fontSize.xs, color: colors.gray500 },
+  questionText: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  hint: { fontSize: fontSize.xs, color: colors.textSecondary },
   options: { gap: spacing.sm, marginTop: spacing.sm },
   option: {
     minHeight: MIN_TOUCH_TARGET,
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: colors.gray300,
+    borderColor: colors.border,
     borderRadius: radius.md,
     padding: spacing.md,
   },
-  optionLabel: { fontSize: fontSize.md, color: colors.gray800 },
+  optionLabel: { fontSize: fontSize.md, color: colors.textPrimary },
   actions: { gap: spacing.sm },
   resultCard: { gap: spacing.sm },
-  resultTitle: { fontSize: fontSize.xl, fontWeight: fontWeight.bold, color: colors.gray900 },
-  resultSubtitle: { fontSize: fontSize.sm, color: colors.gray600 },
+  resultTitle: { fontSize: fontSize.xl, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  resultSubtitle: { fontSize: fontSize.sm, color: colors.textSecondary },
   block: { marginTop: spacing.md },
-  blockTitle: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.gray800, marginBottom: spacing.xs },
-  listItem: { fontSize: fontSize.sm, color: colors.gray700, marginBottom: 2 },
-  note: { fontSize: fontSize.xs, color: colors.gray500, marginTop: spacing.md, fontStyle: 'italic' },
-  error: { fontSize: fontSize.md, color: colors.red, textAlign: 'center' },
+  blockTitle: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.textPrimary, marginBottom: spacing.xs },
+  listItem: { fontSize: fontSize.sm, color: colors.textSecondary, marginBottom: 2 },
+  note: { fontSize: fontSize.xs, color: colors.textSecondary, marginTop: spacing.md, fontStyle: 'italic' },
+  error: { fontSize: fontSize.md, color: colors.error, textAlign: 'center' },
 });

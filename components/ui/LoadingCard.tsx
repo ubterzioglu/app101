@@ -21,7 +21,7 @@ export function LoadingCard({ lines = 3, showImage = true }: LoadingCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.surface1,
     borderRadius: radius.lg,
     borderWidth: 1,
     borderColor: colors.border,
@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
   image: {
     height: 140,
     borderRadius: radius.md,
-    backgroundColor: colors.gray200,
+    backgroundColor: colors.surface2,
     marginBottom: spacing.md,
   },
   line: {
     height: 14,
     borderRadius: radius.sm,
-    backgroundColor: colors.gray200,
+    backgroundColor: colors.surface2,
     marginBottom: spacing.sm,
   },
   lineShort: {

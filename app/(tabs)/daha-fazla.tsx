@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
   list: { gap: spacing.sm },
   card: { flexDirection: 'row', alignItems: 'center', paddingVertical: spacing.md },
   icon: { fontSize: 22, marginRight: spacing.md },
-  label: { flex: 1, fontSize: fontSize.md, color: colors.gray800 },
-  chevron: { fontSize: fontSize.xl, color: colors.gray400 },
+  label: { flex: 1, fontSize: fontSize.md, color: colors.textPrimary },
+  chevron: { fontSize: fontSize.xl, color: colors.textMuted },
   version: {
     marginTop: spacing.xl,
     textAlign: 'center',
     fontSize: fontSize.xs,
-    color: colors.gray400,
+    color: colors.textMuted,
   },
 });

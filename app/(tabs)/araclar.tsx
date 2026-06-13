@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: fontSize.lg,
     fontWeight: fontWeight.bold,
-    color: colors.gray900,
+    color: colors.textPrimary,
     marginTop: spacing.lg,
     marginBottom: spacing.md,
   },
   list: { gap: spacing.sm },
   card: { flexDirection: 'row', alignItems: 'center', paddingVertical: spacing.md },
   icon: { fontSize: 22, marginRight: spacing.md },
-  label: { flex: 1, fontSize: fontSize.md, color: colors.gray800 },
-  chevron: { fontSize: fontSize.xl, color: colors.gray400 },
+  label: { flex: 1, fontSize: fontSize.md, color: colors.textPrimary },
+  chevron: { fontSize: fontSize.xl, color: colors.textMuted },
 });

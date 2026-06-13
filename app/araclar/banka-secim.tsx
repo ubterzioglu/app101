@@ -8,7 +8,7 @@ export default function BankSelectionScreen() {
   return (
     <ScreenContainer padded={false}>
       <AppHeader title="Banka Seçim Aracı" showBack />
-      <RecommendationTool config={bankConfig} accentColor={colors.blue} />
+      <RecommendationTool config={bankConfig} accentColor={colors.accent} />
     </ScreenContainer>
   );
 }

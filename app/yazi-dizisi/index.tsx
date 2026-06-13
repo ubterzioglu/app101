@@ -42,7 +42,7 @@ export default function CornerListScreen() {
         contentContainerStyle={styles.list}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl refreshing={isRefetching} onRefresh={() => refetch()} tintColor={colors.blue} />
+          <RefreshControl refreshing={isRefetching} onRefresh={() => refetch()} tintColor={colors.accent} />
         }
         ListEmptyComponent={<EmptyState title="Henüz yazı yok" icon="✍️" />}
         renderItem={({ item }) => (
@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
   list: { padding: spacing.lg },
   card: { marginBottom: spacing.md },
   row: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.sm },
-  avatar: { width: 40, height: 40, borderRadius: radius.pill, backgroundColor: colors.gray200 },
-  avatarFallback: { backgroundColor: colors.gray300 },
+  avatar: { width: 40, height: 40, borderRadius: radius.pill, backgroundColor: colors.surface2 },
+  avatarFallback: { backgroundColor: colors.surface3 },
   rowText: { marginLeft: spacing.sm },
-  author: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.gray800 },
-  meta: { fontSize: fontSize.xs, color: colors.gray400 },
-  title: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.gray900 },
-  summary: { fontSize: fontSize.sm, color: colors.gray600, marginTop: spacing.xs },
+  author: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.textPrimary },
+  meta: { fontSize: fontSize.xs, color: colors.textMuted },
+  title: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  summary: { fontSize: fontSize.sm, color: colors.textSecondary, marginTop: spacing.xs },
 });

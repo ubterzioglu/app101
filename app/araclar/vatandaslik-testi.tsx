@@ -93,13 +93,13 @@ export default function CitizenshipQuizScreen() {
         <ScrollView contentContainerStyle={styles.content}>
           {buildError ? <ErrorState message={buildError} /> : null}
 
-          <AppCard accentColor={colors.red} style={styles.modeCard}>
+          <AppCard accentColor={colors.error} style={styles.modeCard}>
             <Text style={styles.modeTitle}>Tüm Sorular (300)</Text>
             <Text style={styles.modeDesc}>Genel soru havuzundan 300 soruluk tam test.</Text>
             <AppButton label="Sınava Başla" variant="danger" onPress={() => setPending({ mode: 'all' })} />
           </AppCard>
 
-          <AppCard accentColor={colors.red} style={styles.modeCard}>
+          <AppCard accentColor={colors.error} style={styles.modeCard}>
             <Text style={styles.modeTitle}>Gerçek Deneme Sınavı</Text>
             <Text style={styles.modeDesc}>30 genel + 3 eyalet sorusu, 60 dakika, 33 soru.</Text>
             <AppSelect
@@ -116,7 +116,7 @@ export default function CitizenshipQuizScreen() {
             />
           </AppCard>
 
-          <AppCard accentColor={colors.red} style={styles.modeCard}>
+          <AppCard accentColor={colors.error} style={styles.modeCard}>
             <Text style={styles.modeTitle}>Eyalet Soruları (10)</Text>
             <Text style={styles.modeDesc}>Seçtiğiniz eyalete özel 10 soru.</Text>
             <AppSelect
@@ -235,17 +235,17 @@ export default function CitizenshipQuizScreen() {
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
   modeCard: { gap: spacing.sm },
-  modeTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900 },
-  modeDesc: { fontSize: fontSize.sm, color: colors.gray500 },
-  loadingText: { fontSize: fontSize.md, color: colors.gray500, marginBottom: spacing.md },
+  modeTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  modeDesc: { fontSize: fontSize.sm, color: colors.textSecondary },
+  loadingText: { fontSize: fontSize.md, color: colors.textSecondary, marginBottom: spacing.md },
   progressRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  progressText: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.red },
-  timer: { fontSize: fontSize.sm, fontWeight: fontWeight.bold, color: colors.red },
+  progressText: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.error },
+  timer: { fontSize: fontSize.sm, fontWeight: fontWeight.bold, color: colors.error },
   questionCard: { gap: spacing.sm },
   image: { width: '100%', height: 180, borderRadius: 12, marginBottom: spacing.sm },
-  questionDe: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900 },
-  questionTr: { fontSize: fontSize.sm, color: colors.gray500, marginBottom: spacing.sm },
+  questionDe: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  questionTr: { fontSize: fontSize.sm, color: colors.textSecondary, marginBottom: spacing.sm },
   nextRow: { gap: spacing.sm, marginTop: spacing.md },
   resultActions: { marginTop: spacing.lg },
-  timeUp: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.red, textAlign: 'center' },
+  timeUp: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.error, textAlign: 'center' },
 });

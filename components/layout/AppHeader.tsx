@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
-    backgroundColor: colors.white,
+    backgroundColor: colors.surface1,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
   },
@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  backText: { fontSize: 32, color: colors.blue, lineHeight: 34 },
+  backText: { fontSize: 32, color: colors.accent, lineHeight: 34 },
   title: {
     flex: 1,
     textAlign: 'center',
     fontSize: fontSize.lg,
     fontWeight: fontWeight.bold,
-    color: colors.gray900,
+    color: colors.textPrimary,
   },
 });

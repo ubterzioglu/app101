@@ -11,9 +11,9 @@ export interface QuickAction {
 
 // Home "Hızlı Başlangıç" cards (plan §12.1).
 export const QUICK_ACTIONS: QuickAction[] = [
-  { key: 'salary', label: 'Maaşımı Hesapla', icon: '💶', href: '/araclar/maas-hesaplama', color: colors.blue },
-  { key: 'citizenship', label: 'Vatandaşlık Testi', icon: '🇩🇪', href: '/araclar/vatandaslik-testi', color: colors.red },
-  { key: 'rehber', label: 'Türkçe Hizmet Bul', icon: '🧭', href: '/(tabs)/rehber', color: colors.green },
+  { key: 'salary', label: 'Maaşımı Hesapla', icon: '💶', href: '/araclar/maas-hesaplama', color: colors.accent },
+  { key: 'citizenship', label: 'Vatandaşlık Testi', icon: '🇩🇪', href: '/araclar/vatandaslik-testi', color: colors.error },
+  { key: 'rehber', label: 'Türkçe Hizmet Bul', icon: '🧭', href: '/(tabs)/rehber', color: colors.success },
   { key: 'news', label: 'Haberleri Oku', icon: '📰', href: '/(tabs)/haberler', color: colors.yellow },
 ];
 

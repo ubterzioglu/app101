@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center' },
   icon: { fontSize: 26, marginRight: spacing.md },
   headerText: { flex: 1 },
-  name: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.gray900 },
-  category: { fontSize: fontSize.xs, color: colors.gray500, marginTop: 2 },
-  description: { fontSize: fontSize.sm, color: colors.gray600, marginTop: spacing.sm },
+  name: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  category: { fontSize: fontSize.xs, color: colors.textSecondary, marginTop: 2 },
+  description: { fontSize: fontSize.sm, color: colors.textSecondary, marginTop: spacing.sm },
 });

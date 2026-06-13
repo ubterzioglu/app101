@@ -18,7 +18,7 @@ interface RecommendationToolProps {
 
 // Shared question-flow + results UI for all recommendation tools (plan §13.2).
 // Pure-engine output is rendered; logic lives in features/recommendations.
-export function RecommendationTool({ config, accentColor = colors.blue }: RecommendationToolProps) {
+export function RecommendationTool({ config, accentColor = colors.accent }: RecommendationToolProps) {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [done, setDone] = useState(false);
@@ -108,23 +108,23 @@ export function RecommendationTool({ config, accentColor = colors.blue }: Recomm
 
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
-  progressText: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.gray600 },
+  progressText: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.textSecondary },
   questionCard: { gap: spacing.sm },
-  questionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900 },
-  questionDesc: { fontSize: fontSize.sm, color: colors.gray500 },
+  questionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  questionDesc: { fontSize: fontSize.sm, color: colors.textSecondary },
   options: { gap: spacing.sm, marginTop: spacing.sm },
   option: {
     minHeight: MIN_TOUCH_TARGET,
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: colors.gray300,
+    borderColor: colors.border,
     borderRadius: radius.md,
     padding: spacing.md,
   },
-  optionLabel: { fontSize: fontSize.md, fontWeight: fontWeight.medium, color: colors.gray800 },
-  optionDesc: { fontSize: fontSize.xs, color: colors.gray500, marginTop: 2 },
+  optionLabel: { fontSize: fontSize.md, fontWeight: fontWeight.medium, color: colors.textPrimary },
+  optionDesc: { fontSize: fontSize.xs, color: colors.textSecondary, marginTop: 2 },
   back: { marginTop: spacing.sm },
-  resultsTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900 },
+  resultsTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary },
   resultCard: {},
   rankRow: { flexDirection: 'row', alignItems: 'center' },
   rankBadge: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   rankText: { color: colors.white, fontWeight: fontWeight.bold, fontSize: fontSize.md },
   resultText: { flex: 1 },
-  resultName: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.gray900 },
-  resultType: { fontSize: fontSize.xs, color: colors.gray500, marginTop: 2 },
+  resultName: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  resultType: { fontSize: fontSize.xs, color: colors.textSecondary, marginTop: 2 },
   restart: { marginTop: spacing.lg },
 });

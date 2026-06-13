@@ -35,10 +35,10 @@ export default function AboutScreen() {
 
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
-  title: { fontSize: fontSize.xxl, fontWeight: fontWeight.bold, color: colors.gray900 },
+  title: { fontSize: fontSize.xxl, fontWeight: fontWeight.bold, color: colors.textPrimary },
   paragraph: {
     fontSize: fontSize.md,
-    color: colors.gray700,
+    color: colors.textSecondary,
     lineHeight: fontSize.md * lineHeight.relaxed,
   },
 });

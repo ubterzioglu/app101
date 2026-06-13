@@ -51,9 +51,9 @@ export default function InsuranceScreen() {
       <AppHeader title="Sigorta Seçim Aracı" showBack />
       {done && classified ? (
         <ScrollView contentContainerStyle={styles.content}>
-          <Section title="Olmazsa olmaz" color={colors.red} items={classified.must} />
-          <Section title="Önerilir" color={colors.orange} items={classified.should} />
-          <Section title="İsteğe bağlı" color={colors.green} items={classified.nice} />
+          <Section title="Olmazsa olmaz" color={colors.error} items={classified.must} />
+          <Section title="Önerilir" color={colors.warning} items={classified.should} />
+          <Section title="İsteğe bağlı" color={colors.success} items={classified.nice} />
           <View style={styles.restart}>
             <AppButton label="Yeniden Başla" variant="outline" onPress={restart} />
           </View>
@@ -63,8 +63,8 @@ export default function InsuranceScreen() {
           <Text style={styles.progressText}>
             Soru {index + 1} / {total}
           </Text>
-          <ProgressBar value={(index + 1) / total} color={colors.green} />
-          <AppCard accentColor={colors.green} style={styles.questionCard}>
+          <ProgressBar value={(index + 1) / total} color={colors.success} />
+          <AppCard accentColor={colors.success} style={styles.questionCard}>
             <Text style={styles.questionTitle}>{question.title}</Text>
             {question.desc ? <Text style={styles.questionDesc}>{question.desc}</Text> : null}
             <View style={styles.options}>
@@ -116,26 +116,26 @@ function Section({ title, color, items }: { title: string; color: string; items:
 
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
-  progressText: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.gray600 },
+  progressText: { fontSize: fontSize.sm, fontWeight: fontWeight.medium, color: colors.textSecondary },
   questionCard: { gap: spacing.sm },
-  questionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900 },
-  questionDesc: { fontSize: fontSize.sm, color: colors.gray500 },
+  questionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  questionDesc: { fontSize: fontSize.sm, color: colors.textSecondary },
   options: { gap: spacing.sm, marginTop: spacing.sm },
   option: {
     minHeight: MIN_TOUCH_TARGET,
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: colors.gray300,
+    borderColor: colors.border,
     borderRadius: radius.md,
     padding: spacing.md,
   },
-  optionLabel: { fontSize: fontSize.md, fontWeight: fontWeight.medium, color: colors.gray800 },
-  optionDesc: { fontSize: fontSize.xs, color: colors.gray500, marginTop: 2 },
+  optionLabel: { fontSize: fontSize.md, fontWeight: fontWeight.medium, color: colors.textPrimary },
+  optionDesc: { fontSize: fontSize.xs, color: colors.textSecondary, marginTop: 2 },
   back: { marginTop: spacing.sm },
   section: { gap: spacing.sm },
   sectionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold },
   itemCard: {},
-  itemTitle: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.gray900 },
-  itemReason: { fontSize: fontSize.sm, color: colors.gray600, marginTop: spacing.xs },
+  itemTitle: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  itemReason: { fontSize: fontSize.sm, color: colors.textSecondary, marginTop: spacing.xs },
   restart: { marginTop: spacing.lg },
 });

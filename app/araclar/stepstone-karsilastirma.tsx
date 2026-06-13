@@ -162,7 +162,7 @@ export default function StepstoneScreen() {
       <AppHeader title="StepStone Karşılaştırma" showBack />
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <AppCard
-          accentColor={colors.blue}
+          accentColor={colors.accent}
           onPress={() => setShowInfo(!showInfo)}
           accessibilityLabel="Nasıl Çalışır?"
         >
@@ -243,7 +243,7 @@ export default function StepstoneScreen() {
 
         {result ? (
           <>
-            <AppCard accentColor={colors.green}>
+            <AppCard accentColor={colors.success}>
               <View style={styles.summaryRow}>
                 <View style={styles.summaryLeft}>
                   <Text style={styles.summaryLabel}>Senin yıllık brütün</Text>
@@ -268,7 +268,7 @@ export default function StepstoneScreen() {
               </View>
             </AppCard>
 
-            <AppCard accentColor={colors.blue}>
+            <AppCard accentColor={colors.accent}>
               <Text style={styles.compareTitle}>Boyuta Göre Karşılaştırma</Text>
               {result.rows.map((r) => {
                 const above = r.diff > 0;
@@ -300,50 +300,50 @@ export default function StepstoneScreen() {
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
   infoHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  infoHeaderText: { fontSize: fontSize.md, fontWeight: fontWeight.semibold, color: colors.gray900 },
-  chevron: { color: colors.blue, fontSize: fontSize.xl },
+  infoHeaderText: { fontSize: fontSize.md, fontWeight: fontWeight.semibold, color: colors.textPrimary },
+  chevron: { color: colors.accent, fontSize: fontSize.xl },
   chevronOpen: { transform: [{ rotate: '180deg' }] },
-  infoBody: { marginTop: spacing.md, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.gray200 },
-  infoItem: { fontSize: fontSize.sm, color: colors.gray700, lineHeight: 20, marginBottom: spacing.xs },
-  sectionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900, marginBottom: spacing.xs },
-  sectionDesc: { fontSize: fontSize.sm, color: colors.gray600, marginBottom: spacing.md },
+  infoBody: { marginTop: spacing.md, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.surface2 },
+  infoItem: { fontSize: fontSize.sm, color: colors.textSecondary, lineHeight: 20, marginBottom: spacing.xs },
+  sectionTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary, marginBottom: spacing.xs },
+  sectionDesc: { fontSize: fontSize.sm, color: colors.textSecondary, marginBottom: spacing.md },
   row2: { flexDirection: 'row', gap: spacing.md },
   row2Item: { flex: 1 },
   btnRow: { flexDirection: 'row', gap: spacing.md, marginTop: spacing.md },
   btnFlex: { flex: 1 },
-  missingTitle: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.gray700 },
-  missingText: { fontSize: fontSize.sm, color: colors.gray600, marginTop: spacing.xs },
+  missingTitle: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.textSecondary },
+  missingText: { fontSize: fontSize.sm, color: colors.textSecondary, marginTop: spacing.xs },
   summaryRow: { flexDirection: 'row', justifyContent: 'space-between' },
   summaryLeft: { flex: 1 },
   summaryRight: { alignItems: 'flex-end' },
-  summaryLabel: { fontSize: fontSize.xs, color: colors.gray500 },
-  summaryBig: { fontSize: fontSize.xxl, fontWeight: fontWeight.bold, color: colors.gray900, marginTop: spacing.xs },
-  summarySub: { fontSize: fontSize.xs, color: colors.gray400, marginTop: spacing.xs },
-  summaryMedian: { fontSize: fontSize.sm, fontWeight: fontWeight.bold, color: colors.gray900 },
-  divider: { height: 1, backgroundColor: colors.gray200, marginVertical: spacing.md },
-  picksTitle: { fontSize: fontSize.xs, fontWeight: fontWeight.semibold, color: colors.gray500, marginBottom: spacing.xs },
+  summaryLabel: { fontSize: fontSize.xs, color: colors.textSecondary },
+  summaryBig: { fontSize: fontSize.xxl, fontWeight: fontWeight.bold, color: colors.textPrimary, marginTop: spacing.xs },
+  summarySub: { fontSize: fontSize.xs, color: colors.textMuted, marginTop: spacing.xs },
+  summaryMedian: { fontSize: fontSize.sm, fontWeight: fontWeight.bold, color: colors.textPrimary },
+  divider: { height: 1, backgroundColor: colors.surface2, marginVertical: spacing.md },
+  picksTitle: { fontSize: fontSize.xs, fontWeight: fontWeight.semibold, color: colors.textSecondary, marginBottom: spacing.xs },
   picksGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs },
   pickItem: { flexDirection: 'row', width: '50%', paddingRight: spacing.sm },
-  pickKey: { fontSize: fontSize.sm, color: colors.gray500 },
-  pickValue: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.gray700 },
-  compareTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.gray900, marginBottom: spacing.md },
+  pickKey: { fontSize: fontSize.sm, color: colors.textSecondary },
+  pickValue: { fontSize: fontSize.sm, fontWeight: fontWeight.semibold, color: colors.textSecondary },
+  compareTitle: { fontSize: fontSize.lg, fontWeight: fontWeight.bold, color: colors.textPrimary, marginBottom: spacing.md },
   compareRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: `${colors.blue}33`,
-    backgroundColor: `${colors.blue}11`,
+    borderColor: `${colors.accent}33`,
+    backgroundColor: `${colors.accent}11`,
     borderRadius: radius.md,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     marginBottom: spacing.sm,
   },
-  compareLabel: { fontSize: fontSize.sm, color: colors.gray700, flex: 1, paddingRight: spacing.sm },
+  compareLabel: { fontSize: fontSize.sm, color: colors.textSecondary, flex: 1, paddingRight: spacing.sm },
   compareRight: { alignItems: 'flex-end' },
-  compareMedian: { fontSize: fontSize.sm, fontWeight: fontWeight.bold, color: colors.gray900 },
+  compareMedian: { fontSize: fontSize.sm, fontWeight: fontWeight.bold, color: colors.textPrimary },
   compareDiff: { fontSize: fontSize.xs, fontWeight: fontWeight.semibold },
-  diffAbove: { color: colors.green },
-  diffBelow: { color: colors.red },
-  note: { fontSize: fontSize.xs, color: colors.gray500, fontStyle: 'italic' },
+  diffAbove: { color: colors.success },
+  diffBelow: { color: colors.error },
+  note: { fontSize: fontSize.xs, color: colors.textSecondary, fontStyle: 'italic' },
 });

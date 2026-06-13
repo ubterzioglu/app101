@@ -30,7 +30,7 @@ export function ScreenContainer({
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.gray50,
+    backgroundColor: colors.surface0,
   },
   inner: {
     flex: 1,

@@ -153,13 +153,13 @@ export default function SuggestionScreen() {
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, paddingBottom: spacing.xxl },
   intro: {
-    backgroundColor: colors.gray100,
+    backgroundColor: colors.surface1,
     borderRadius: radius.md,
     padding: spacing.md,
     marginBottom: spacing.lg,
   },
-  introText: { fontSize: fontSize.sm, color: colors.gray600 },
-  error: { color: colors.red, fontSize: fontSize.xs, marginTop: -spacing.sm, marginBottom: spacing.sm },
+  introText: { fontSize: fontSize.sm, color: colors.textSecondary },
+  error: { color: colors.error, fontSize: fontSize.xs, marginTop: -spacing.sm, marginBottom: spacing.sm },
   textarea: { minHeight: 96, textAlignVertical: 'top' },
   submit: { marginTop: spacing.lg },
 });

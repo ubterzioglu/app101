@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
   paragraph: {
     fontSize: fontSize.md,
-    color: colors.gray700,
+    color: colors.textSecondary,
     lineHeight: fontSize.md * lineHeight.relaxed,
   },
 });

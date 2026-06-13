@@ -1,30 +1,43 @@
-import { calculateTransfer, rankTransfers } from '@/features/recommendations/transfer/engine';
-import { TRANSFER_PROVIDERS, EXCHANGE_RATE } from '@/features/recommendations/transfer/data';
+import { derivePrefs, rankTransferSystems, scoreSystem } from '@/features/recommendations/transfer/engine';
+import { TRANSFER_SYSTEMS } from '@/features/recommendations/transfer/data';
 
 describe('transfer engine', () => {
-  it('percentage fee respects minFee', () => {
-    const p = { feeType: 'percentage' as const, fixedFee: 0, percentageFee: 0.5, minFee: 5, exchangeRateMargin: 0 } as any;
-    const r = calculateTransfer(p, 100); // 0.5% of 100 = 0.5, below minFee 5
-    expect(r.fee).toBe(5);
+  it('derivePrefs returns base prefs with no answers', () => {
+    const prefs = derivePrefs({});
+    expect(prefs.cost).toBeGreaterThanOrEqual(1);
+    expect(prefs.simple).toBeGreaterThanOrEqual(1);
   });
 
-  it('fixed fee is constant', () => {
-    const p = { feeType: 'fixed' as const, fixedFee: 3, percentageFee: 0, minFee: 0, exchangeRateMargin: 0 } as any;
-    expect(calculateTransfer(p, 1000).fee).toBe(3);
+  it('cost priority boosts cost weight', () => {
+    const base = derivePrefs({});
+    const withCost = derivePrefs({ q4: 'cost' });
+    expect(withCost.cost).toBeGreaterThan(base.cost);
   });
 
-  it('applies exchange-rate margin to received amount', () => {
-    const p = { feeType: 'fixed' as const, fixedFee: 0, percentageFee: 0, minFee: 0, exchangeRateMargin: 0 } as any;
-    const r = calculateTransfer(p, 1000);
-    expect(r.exchangeRate).toBeCloseTo(EXCHANGE_RATE, 6);
-    expect(r.receivedAmount).toBeCloseTo(1000 * EXCHANGE_RATE, 4);
+  it('cash pickup answer boosts cash weight', () => {
+    const base = derivePrefs({});
+    const withCash = derivePrefs({ q7: 'yes' });
+    expect(withCash.cash).toBeGreaterThan(base.cash);
   });
 
-  it('ranks providers by net received amount, descending', () => {
-    const ranked = rankTransfers(1000);
-    expect(ranked.length).toBe(TRANSFER_PROVIDERS.length);
+  it('scoreSystem returns positive number for valid system', () => {
+    const prefs = derivePrefs({ q4: 'cost' });
+    const score = scoreSystem(TRANSFER_SYSTEMS[0], prefs);
+    expect(score).toBeGreaterThan(0);
+  });
+
+  it('rankTransferSystems returns topN sorted descending', () => {
+    const ranked = rankTransferSystems({}, 5);
+    expect(ranked.length).toBe(5);
     for (let i = 1; i < ranked.length; i++) {
-      expect(ranked[i - 1].receivedAmount).toBeGreaterThanOrEqual(ranked[i].receivedAmount);
+      expect(ranked[i - 1].totalScore).toBeGreaterThanOrEqual(ranked[i].totalScore);
     }
+  });
+
+  it('rank field starts at 1', () => {
+    const ranked = rankTransferSystems({}, 3);
+    expect(ranked[0].rank).toBe(1);
+    expect(ranked[1].rank).toBe(2);
+    expect(ranked[2].rank).toBe(3);
   });
 });

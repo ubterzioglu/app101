@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
   card: { marginBottom: spacing.md, padding: spacing.sm },
   content: { flexDirection: 'row', gap: spacing.md },
   imageWrap: { width: 116, flexShrink: 0 },
-  image: { width: '100%', height: 116, borderRadius: radius.md, backgroundColor: colors.gray200 },
+  image: { width: '100%', height: 116, borderRadius: radius.md, backgroundColor: colors.surface2 },
   placeholder: {
     width: '100%',
     height: 116,
     borderRadius: radius.md,
-    backgroundColor: colors.gray900,
+    backgroundColor: colors.surface2,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -71,27 +71,27 @@ const styles = StyleSheet.create({
   body: { flex: 1, gap: spacing.xs },
   categoryChip: {
     alignSelf: 'flex-start',
-    backgroundColor: colors.blue,
+    backgroundColor: colors.accent,
     borderRadius: radius.pill,
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,
   },
-  categoryText: { color: colors.white, fontSize: fontSize.xs, fontWeight: fontWeight.semibold },
+  categoryText: { color: colors.textInverse, fontSize: fontSize.xs, fontWeight: fontWeight.semibold },
   title: {
     fontSize: fontSize.md,
     fontWeight: fontWeight.bold,
-    color: colors.gray900,
+    color: colors.textPrimary,
   },
   excerpt: {
     fontSize: fontSize.sm,
-    color: colors.gray600,
+    color: colors.textSecondary,
   },
   source: {
     fontSize: fontSize.xs,
-    color: colors.gray500,
+    color: colors.textSecondary,
   },
   meta: {
     fontSize: fontSize.xs,
-    color: colors.gray400,
+    color: colors.textMuted,
   },
 });
