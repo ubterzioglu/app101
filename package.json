@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "node scripts/fix-android-gradle.mjs",
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "android:fix-gradle": "node scripts/fix-android-gradle.mjs",
     "web": "expo start --web",
     "env:sync": "node scripts/sync-local-env.mjs",
     "security:check": "node scripts/check-no-secrets.mjs",
