@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -17,7 +18,12 @@ export default function HomeScreen() {
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Logo + motto */}
         <View style={styles.hero}>
-          <Text style={styles.logo}>almanya101</Text>
+          <Image
+            source={require('@/assets/images/icon.png')}
+            style={styles.logoImage}
+            contentFit="contain"
+            accessibilityLabel="almanya101 logosu"
+          />
           <Text style={styles.motto}>Almanya'da hayatınızı kolaylaştıran rehber.</Text>
         </View>
 
@@ -77,10 +83,9 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xl,
     alignItems: 'center',
   },
-  logo: {
-    fontSize: fontSize.xxl,
-    fontWeight: fontWeight.bold,
-    color: colors.gray900,
+  logoImage: {
+    width: 120,
+    height: 120,
   },
   motto: {
     marginTop: spacing.xs,

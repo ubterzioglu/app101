@@ -63,3 +63,6 @@ __scaffold/
 
 # OMC local state
 .omc/
+
+# Reference repo (not tracked)
+referans/
