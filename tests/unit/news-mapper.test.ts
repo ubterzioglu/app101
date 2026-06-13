@@ -38,14 +38,22 @@ describe('news slug round-trip', () => {
 describe('mapRowToArticle', () => {
   const base: NewsPostRow = {
     id: 'x1',
+    slug: null,
     category: null,
     title: null,
     summary: null,
     content: null,
     cover_image_url: null,
+    cover_image_alt: null,
     source_name: null,
     source_url: null,
+    source_published_at: null,
+    status: 'published',
+    is_featured: null,
+    featured_rank: null,
+    reading_time_minutes: null,
     reading_minutes: null,
+    whatsapp_share_text: null,
     published_at: null,
     created_at: '2026-01-02T00:00:00Z',
   };
@@ -53,22 +61,51 @@ describe('mapRowToArticle', () => {
   it('falls back to defaults for null fields', () => {
     const a = mapRowToArticle(base);
     expect(a.title).toBe('Başlıksız haber');
-    expect(a.category).toBe('Almanya');
+    expect(a.slug).toBe('basliksiz-haber--x1');
+    expect(a.categoryKey).toBe('almanya');
+    expect(a.categoryLabel).toBe('Almanya');
     expect(a.readingMinutes).toBe(3);
     expect(a.image).toBeNull();
+    expect(a.imageAlt).toBe('Başlıksız haber');
     expect(a.sourceName).toBeUndefined();
+    expect(a.whatsAppShareText).toBeNull();
   });
 
-  it('uses provided values; treats 0 reading_minutes as missing (defaults to 3)', () => {
-    const a = mapRowToArticle({ ...base, title: 'Haber', reading_minutes: 0, cover_image_url: 'https://x/y.jpg' });
+  it('uses provided slug and new reading_time_minutes field', () => {
+    const a = mapRowToArticle({
+      ...base,
+      title: 'Haber',
+      slug: 'hazir-slug',
+      reading_time_minutes: 5,
+      cover_image_url: 'https://x/y.jpg',
+      cover_image_alt: 'Alt metin',
+      whatsapp_share_text: 'Paylaş',
+      is_featured: true,
+      featured_rank: 1,
+      category: 'avrupa',
+    });
+
     expect(a.title).toBe('Haber');
-    // Ported web behavior: `Number(0 || 3)` -> 3, then Math.max(1, 3) -> 3.
-    expect(a.readingMinutes).toBe(3);
+    expect(a.slug).toBe('hazir-slug');
+    expect(a.categoryKey).toBe('avrupa');
+    expect(a.categoryLabel).toBe('Avrupa');
+    expect(a.readingMinutes).toBe(5);
     expect(a.image).toBe('https://x/y.jpg');
+    expect(a.imageAlt).toBe('Alt metin');
+    expect(a.whatsAppShareText).toBe('Paylaş');
+    expect(a.isFeatured).toBe(true);
+    expect(a.featuredRank).toBe(1);
   });
 
-  it('clamps a provided positive reading_minutes through', () => {
+  it('falls back to legacy reading_minutes when the new field is missing', () => {
     const a = mapRowToArticle({ ...base, reading_minutes: 7 });
+
     expect(a.readingMinutes).toBe(7);
+  });
+
+  it('treats zero reading time as missing and defaults to three minutes', () => {
+    const a = mapRowToArticle({ ...base, reading_time_minutes: 0, reading_minutes: 0 });
+
+    expect(a.readingMinutes).toBe(3);
   });
 });

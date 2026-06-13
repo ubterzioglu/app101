@@ -12,10 +12,14 @@ const PAGE_SIZE = 12;
 /** Paginated published news list, newest first (plan §12.2). */
 export async function fetchNewsPage(offset = 0): Promise<NewsPage> {
   const to = offset + PAGE_SIZE - 1;
+  const nowIso = new Date().toISOString();
   const { data, error } = await supabase
     .from('news_posts')
     .select(NEWS_SELECT)
     .eq('status', 'published')
+    .lte('published_at', nowIso)
+    .order('is_featured', { ascending: false, nullsFirst: false })
+    .order('featured_rank', { ascending: true, nullsFirst: false })
     .order('published_at', { ascending: false, nullsFirst: false })
     .order('created_at', { ascending: false })
     .range(offset, to);
@@ -30,6 +34,21 @@ export async function fetchNewsPage(offset = 0): Promise<NewsPage> {
 
 /** Single published article by slug (parses trailing --{uuid}). */
 export async function fetchNewsArticleBySlug(slug: string): Promise<NewsArticle | null> {
+  const nowIso = new Date().toISOString();
+  const normalizedSlug = String(slug || '').trim();
+  if (!normalizedSlug) return null;
+
+  const { data: slugData, error: slugError } = await supabase
+    .from('news_posts')
+    .select(NEWS_SELECT)
+    .eq('slug', normalizedSlug)
+    .eq('status', 'published')
+    .lte('published_at', nowIso)
+    .maybeSingle();
+
+  if (slugError) throw new Error('Haber yüklenemedi.');
+  if (slugData) return mapRowToArticle(slugData as NewsPostRow);
+
   const id = getIdFromNewsSlug(slug);
   if (!id) return null;
 
@@ -38,15 +57,10 @@ export async function fetchNewsArticleBySlug(slug: string): Promise<NewsArticle 
     .select(NEWS_SELECT)
     .eq('id', id)
     .eq('status', 'published')
+    .lte('published_at', nowIso)
     .maybeSingle();
 
   if (error) throw new Error('Haber yüklenemedi.');
   if (!data) return null;
   return mapRowToArticle(data as NewsPostRow);
-}
-
-/** Related articles: latest published excluding the current id. */
-export async function fetchRelatedNews(currentId: string, limit = 3): Promise<NewsArticle[]> {
-  const { articles } = await fetchNewsPage(0);
-  return articles.filter((a) => a.id !== currentId).slice(0, limit);
 }

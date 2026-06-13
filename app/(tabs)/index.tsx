@@ -19,7 +19,7 @@ export default function HomeScreen() {
         {/* Logo + motto */}
         <View style={styles.hero}>
           <Image
-            source={require('@/assets/images/icon.png')}
+            source={require('@/referans/public/almanya101lragetransparent.png')}
             style={styles.logoImage}
             contentFit="contain"
             accessibilityLabel="almanya101 logosu"

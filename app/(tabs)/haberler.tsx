@@ -1,20 +1,25 @@
 import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { AppHeader } from '@/components/layout/AppHeader';
+import { NewsHeroCard } from '@/components/news/NewsHeroCard';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { NewsCard } from '@/components/news/NewsCard';
-import { EmptyState, ErrorState, LoadingCard } from '@/components/ui';
+import { AppButton, EmptyState, ErrorState, LoadingCard } from '@/components/ui';
+import {
+  NEWS_CATEGORIES,
+  getNewsCategoryLabel,
+  splitHeroArticle,
+  type NewsCategoryKey,
+} from '@/features/news/helpers';
 import { useNewsList } from '@/features/news/hooks';
 import type { NewsArticle } from '@/features/news/types';
 import { colors, fontSize, fontWeight, radius, spacing } from '@/theme';
 
-const ALL = 'Tümü';
-
 export default function HaberlerScreen() {
   const router = useRouter();
-  const [category, setCategory] = useState<string>(ALL);
+  const [category, setCategory] = useState<NewsCategoryKey>('almanya');
   const {
     data,
     isLoading,
@@ -31,16 +36,7 @@ export default function HaberlerScreen() {
     [data]
   );
 
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    articles.forEach((a) => set.add(a.category));
-    return [ALL, ...[...set].sort()];
-  }, [articles]);
-
-  const filtered = useMemo(
-    () => (category === ALL ? articles : articles.filter((a) => a.category === category)),
-    [articles, category]
-  );
+  const visible = useMemo(() => splitHeroArticle(articles, category), [articles, category]);
 
   if (isLoading) {
     return (
@@ -67,30 +63,40 @@ export default function HaberlerScreen() {
     <ScreenContainer padded={false}>
       <AppHeader title="Haberler" />
       <FlatList
-        data={filtered}
+        data={visible.list}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
-          <FlatList
-            horizontal
-            data={categories}
-            keyExtractor={(c) => c}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.chips}
-            renderItem={({ item }) => {
-              const active = item === category;
-              return (
-                <Pressable
-                  accessibilityRole="button"
-                  onPress={() => setCategory(item)}
-                  style={[styles.chip, active && styles.chipActive]}
-                >
-                  <Text style={[styles.chipText, active && styles.chipTextActive]}>{item}</Text>
-                </Pressable>
-              );
-            }}
-          />
+          <View>
+            {visible.hero ? (
+              <NewsHeroCard
+                article={visible.hero}
+                onPress={() => router.push(`/haberler/${visible.hero?.slug}`)}
+              />
+            ) : null}
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.chips}
+            >
+              {NEWS_CATEGORIES.map((item) => {
+                const active = item === category;
+                return (
+                  <Pressable
+                    key={item}
+                    accessibilityRole="button"
+                    onPress={() => setCategory(item)}
+                    style={[styles.chip, active && styles.chipActive]}
+                  >
+                    <Text style={[styles.chipText, active && styles.chipTextActive]}>
+                      {getNewsCategoryLabel(item)}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
+          </View>
         }
         renderItem={({ item }) => (
           <NewsCard article={item} onPress={() => router.push(`/haberler/${item.slug}`)} />
@@ -98,12 +104,29 @@ export default function HaberlerScreen() {
         refreshControl={
           <RefreshControl refreshing={isRefetching} onRefresh={() => refetch()} tintColor={colors.blue} />
         }
-        onEndReachedThreshold={0.5}
-        onEndReached={() => {
-          if (hasNextPage && !isFetchingNextPage && category === ALL) fetchNextPage();
-        }}
-        ListEmptyComponent={<EmptyState title="Haber bulunamadı" icon="📰" />}
-        ListFooterComponent={isFetchingNextPage ? <LoadingCard lines={2} /> : null}
+        ListEmptyComponent={
+          visible.hero ? null : (
+            <EmptyState
+              title={`${getNewsCategoryLabel(category)} kategorisinde haber bulunamadı`}
+              message="Bu kategori için yayınlanmış içerik geldiğinde burada görünecek."
+              icon="📰"
+            />
+          )
+        }
+        ListFooterComponent={
+          isFetchingNextPage ? (
+            <LoadingCard lines={2} />
+          ) : hasNextPage ? (
+            <View style={styles.footer}>
+              <AppButton
+                label="Daha fazla yükle"
+                variant="outline"
+                fullWidth={false}
+                onPress={() => fetchNextPage()}
+              />
+            </View>
+          ) : null
+        }
       />
     </ScreenContainer>
   );
@@ -124,4 +147,9 @@ const styles = StyleSheet.create({
   chipActive: { backgroundColor: colors.blue, borderColor: colors.blue },
   chipText: { fontSize: fontSize.sm, color: colors.gray700, fontWeight: fontWeight.medium },
   chipTextActive: { color: colors.white },
+  footer: {
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.md,
+    alignItems: 'center',
+  },
 });
