@@ -1,5 +1,5 @@
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import { SafeAreaView, Edge } from 'react-native-safe-area-context';
+import { SafeAreaView, Edge, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, spacing, MAX_CONTENT_WIDTH } from '@/theme';
 import { OfflineBanner } from '@/components/ui/OfflineBanner';
@@ -19,10 +19,14 @@ export function ScreenContainer({
   style,
   showOfflineBanner = true,
 }: ScreenContainerProps) {
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={styles.safe} edges={edges}>
       {showOfflineBanner ? <OfflineBanner /> : null}
-      <View style={[styles.inner, padded && styles.padded, style]}>{children}</View>
+      <View style={[styles.inner, { paddingBottom: spacing.lg + insets.bottom }, padded && styles.padded, style]}>
+        {children}
+      </View>
     </SafeAreaView>
   );
 }

@@ -3,20 +3,16 @@ import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
-import { AppButton, AppCard } from '@/components/ui';
-import { EXTERNAL_LINKS } from '@/constants/external-links';
-import { DISCOVER_LINKS, QUICK_ACTIONS, TOOL_LINKS } from '@/constants/navigation';
-import { openExternalUrl } from '@/lib/urls';
-import { colors, fontSize, fontWeight, lineHeight, spacing } from '@/theme';
+import { AppCard } from '@/components/ui';
+import { TOOL_LINKS } from '@/constants/navigation';
+import { colors, fontSize, fontWeight, spacing } from '@/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const popularTools = TOOL_LINKS.filter((t) => t.phase === 'p0');
 
   return (
     <ScreenContainer padded={false}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Logo + motto */}
         <View style={styles.hero}>
           <Image
             source={require('@/assets/images/logoandroid.png')}
@@ -24,30 +20,14 @@ export default function HomeScreen() {
             contentFit="contain"
             accessibilityLabel="almanya101 logosu"
           />
-          <Text style={styles.motto}>Almanya'da hayatınızı kolaylaştıran rehber.</Text>
         </View>
 
-        {/* Quick actions */}
-        <Text style={styles.sectionTitle}>Hızlı Başlangıç</Text>
+        <Text style={styles.sectionTitle}>Araçlar</Text>
+        <Text style={styles.sectionText}>
+          Hesaplama, karşılaştırma ve karar destek araçlarına buradan doğrudan ulaşın.
+        </Text>
         <View style={styles.grid}>
-          {QUICK_ACTIONS.map((action) => (
-            <AppCard
-              key={action.key}
-              accentColor={action.color}
-              style={styles.quickCard}
-              accessibilityLabel={action.label}
-              onPress={() => router.push(action.href as never)}
-            >
-              <Text style={styles.quickIcon}>{action.icon}</Text>
-              <Text style={styles.quickLabel}>{action.label}</Text>
-            </AppCard>
-          ))}
-        </View>
-
-        {/* Popular tools */}
-        <Text style={styles.sectionTitle}>Popüler Araçlar</Text>
-        <View style={styles.toolList}>
-          {popularTools.map((tool) => (
+          {TOOL_LINKS.map((tool) => (
             <AppCard
               key={tool.key}
               style={styles.toolCard}
@@ -56,38 +36,8 @@ export default function HomeScreen() {
             >
               <Text style={styles.toolIcon}>{tool.icon}</Text>
               <Text style={styles.toolLabel}>{tool.label}</Text>
-              <Text style={styles.chevron}>›</Text>
             </AppCard>
           ))}
-        </View>
-
-        <Text style={styles.sectionTitle}>Keşfet</Text>
-        <View style={styles.discoverList}>
-          {DISCOVER_LINKS.map((item) => (
-            <AppCard
-              key={item.key}
-              accentColor={item.accentColor}
-              style={styles.discoverCard}
-              accessibilityLabel={item.label}
-              onPress={() => router.push(item.href as never)}
-            >
-              <Text style={styles.discoverIcon}>{item.icon}</Text>
-              <View style={styles.discoverBody}>
-                <Text style={styles.discoverLabel}>{item.label}</Text>
-                <Text style={styles.discoverDescription}>{item.description}</Text>
-              </View>
-              <Text style={styles.chevron}>›</Text>
-            </AppCard>
-          ))}
-        </View>
-
-        {/* Open website */}
-        <View style={styles.websiteCta}>
-          <AppButton
-            label="Web Sitesini Aç"
-            variant="outline"
-            onPress={() => openExternalUrl(EXTERNAL_LINKS.website)}
-          />
         </View>
       </ScrollView>
     </ScreenContainer>
@@ -97,74 +47,46 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   content: {
     paddingHorizontal: spacing.lg,
+    paddingTop: spacing.xl,
     paddingBottom: spacing.xxl,
   },
   hero: {
-    paddingVertical: spacing.xl,
     alignItems: 'center',
+    marginBottom: spacing.lg,
   },
   logoImage: {
-    width: 120,
-    height: 120,
-  },
-  motto: {
-    marginTop: spacing.xs,
-    fontSize: fontSize.sm,
-    color: colors.textSecondary,
-    textAlign: 'center',
+    width: 144,
+    height: 144,
   },
   sectionTitle: {
-    fontSize: fontSize.lg,
+    fontSize: fontSize.xl,
     fontWeight: fontWeight.bold,
     color: colors.textPrimary,
-    marginTop: spacing.lg,
-    marginBottom: spacing.md,
+  },
+  sectionText: {
+    marginTop: spacing.sm,
+    marginBottom: spacing.lg,
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
   },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.md,
   },
-  quickCard: {
+  toolCard: {
     width: '47%',
     flexGrow: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 132,
     paddingVertical: spacing.lg,
   },
-  quickIcon: { fontSize: 30, marginBottom: spacing.sm },
-  quickLabel: {
+  toolIcon: { fontSize: 30, marginBottom: spacing.sm },
+  toolLabel: {
     fontSize: fontSize.sm,
     fontWeight: fontWeight.semibold,
     color: colors.textPrimary,
     textAlign: 'center',
   },
-  toolList: { gap: spacing.sm },
-  toolCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: spacing.md,
-  },
-  discoverList: { gap: spacing.sm },
-  discoverCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: spacing.md,
-  },
-  discoverIcon: { fontSize: 24, marginRight: spacing.md },
-  discoverBody: { flex: 1 },
-  discoverLabel: {
-    fontSize: fontSize.md,
-    fontWeight: fontWeight.semibold,
-    color: colors.textPrimary,
-  },
-  discoverDescription: {
-    marginTop: spacing.xs,
-    fontSize: fontSize.sm,
-    color: colors.textSecondary,
-    lineHeight: fontSize.sm * lineHeight.relaxed,
-  },
-  toolIcon: { fontSize: 22, marginRight: spacing.md },
-  toolLabel: { flex: 1, fontSize: fontSize.md, color: colors.textPrimary },
-  chevron: { fontSize: fontSize.xl, color: colors.textMuted },
-  websiteCta: { marginTop: spacing.xl },
 });
