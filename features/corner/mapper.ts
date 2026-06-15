@@ -1,7 +1,9 @@
 import { slugify } from '@/features/news/mapper';
 import type {
   CornerAuthor,
+  CornerAuthorProfile,
   CornerAuthorRow,
+  CornerAuthorPostSummary,
   CornerPost,
   CornerPostRow,
 } from './types';
@@ -11,6 +13,10 @@ import type {
 export function buildPostSlug(row: Pick<CornerPostRow, 'id' | 'title'>): string {
   const titlePart = slugify(String(row.title || 'yazi'));
   return `${titlePart || 'yazi'}--${row.id}`;
+}
+
+export function buildAuthorHref(slug: string): string {
+  return `/yazi-dizisi/yazar/${slug}`;
 }
 
 export function getIdFromPostSlug(slug: string): string {
@@ -35,6 +41,14 @@ export function mapAuthorRow(row: CornerAuthorRow): CornerAuthor {
     bioContent: String(row.bio_content || '').trim(),
     avatarImageUrl: row.avatar_image_url ? String(row.avatar_image_url).trim() : null,
     displayOrder: Number(row.display_order ?? 1000),
+  };
+}
+
+export function mapAuthorProfileRow(row: CornerAuthorRow): CornerAuthorProfile {
+  const author = mapAuthorRow(row);
+  return {
+    ...author,
+    href: buildAuthorHref(author.slug),
   };
 }
 
@@ -72,4 +86,18 @@ export function mapPostRowWithJoin(row: CornerPostRow): CornerPost {
   const authorRow = firstRelatedAuthor(row.corner_authors);
   const author = authorRow ? mapAuthorRow(authorRow) : undefined;
   return mapPostRow(row, author);
+}
+
+export function mapPostSummaryRow(row: CornerPostRow): CornerAuthorPostSummary {
+  const post = mapPostRow(row);
+  return {
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    summary: post.summary,
+    coverImageUrl: post.coverImageUrl,
+    readingMinutes: post.readingMinutes,
+    publishedAt: post.publishedAt,
+    dateLabel: post.dateLabel,
+  };
 }

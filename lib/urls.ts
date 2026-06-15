@@ -48,9 +48,29 @@ export function toPhoneUrl(phone: string | null | undefined): string | null {
   return `tel:${cleaned}`;
 }
 
+/** Builds a mailto: URL from a trusted-looking email address. */
+export function toMailtoUrl(email: string | null | undefined): string | null {
+  const raw = String(email ?? '').trim();
+  if (!raw) return null;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw)) return null;
+  return `mailto:${raw}`;
+}
+
 /** Opens the native dialer for a phone number, if valid. */
 export async function openDialer(phone: string | null | undefined): Promise<boolean> {
   const url = toPhoneUrl(phone);
+  if (!url) return false;
+  try {
+    await Linking.openURL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Opens the native email composer for an email address, if valid. */
+export async function openEmail(email: string | null | undefined): Promise<boolean> {
+  const url = toMailtoUrl(email);
   if (!url) return false;
   try {
     await Linking.openURL(url);

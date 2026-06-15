@@ -1,4 +1,4 @@
-import { toSafeExternalUrl, toPhoneUrl } from '@/lib/urls';
+import { toMailtoUrl, toSafeExternalUrl, toPhoneUrl } from '@/lib/urls';
 
 describe('toSafeExternalUrl', () => {
   it('accepts https urls', () => {
@@ -37,5 +37,17 @@ describe('toPhoneUrl', () => {
     expect(toPhoneUrl('12')).toBeNull();
     expect(toPhoneUrl('')).toBeNull();
     expect(toPhoneUrl(null)).toBeNull();
+  });
+});
+
+describe('toMailtoUrl', () => {
+  it('builds mailto: for a valid email address', () => {
+    expect(toMailtoUrl('info@almanya101.de')).toBe('mailto:info@almanya101.de');
+  });
+
+  it('rejects invalid email values', () => {
+    expect(toMailtoUrl('not-an-email')).toBeNull();
+    expect(toMailtoUrl('')).toBeNull();
+    expect(toMailtoUrl(null)).toBeNull();
   });
 });

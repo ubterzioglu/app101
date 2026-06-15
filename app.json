@@ -4,7 +4,7 @@
     "slug": "app101",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logoandroid.png",
     "scheme": "app101",
     "userInterfaceStyle": "light",
     "ios": {
@@ -22,9 +22,7 @@
       ],
       "adaptiveIcon": {
         "backgroundColor": "#000000",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/logoandroid.png"
       },
       "predictiveBackGestureEnabled": false
     },

@@ -35,6 +35,10 @@ export interface CornerAuthor {
   displayOrder: number;
 }
 
+export interface CornerAuthorProfile extends CornerAuthor {
+  href: string;
+}
+
 export interface CornerPost {
   id: string;
   authorId: string | null;
@@ -45,6 +49,17 @@ export interface CornerPost {
   title: string;
   summary: string;
   content: string | null;
+  coverImageUrl: string | null;
+  readingMinutes: number;
+  publishedAt: string;
+  dateLabel: string;
+}
+
+export interface CornerAuthorPostSummary {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
   coverImageUrl: string | null;
   readingMinutes: number;
   publishedAt: string;

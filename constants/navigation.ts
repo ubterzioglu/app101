@@ -39,6 +39,59 @@ export const TOOL_LINKS: ToolLink[] = [
   { key: 'stepstone', label: 'StepStone Karşılaştırma', icon: '📊', href: '/araclar/stepstone-karsilastirma', phase: 'p1' },
 ];
 
+export interface DiscoverLink {
+  key: string;
+  label: string;
+  description: string;
+  icon: string;
+  href: string;
+  accentColor: string;
+}
+
+// Public discovery links ported from last101 home surface.
+export const DISCOVER_LINKS: DiscoverLink[] = [
+  {
+    key: 'documents',
+    label: 'Yararlı Belgeler',
+    description: 'Almanya ve Türkiye işlemleri için resmi belge kataloğu.',
+    icon: '📄',
+    href: '/belgeler',
+    accentColor: colors.yellow,
+  },
+  {
+    key: 'community',
+    label: 'Topluluğa Katıl',
+    description: 'WhatsApp, Telegram ve iletişim kanallarıyla topluluğa bağlanın.',
+    icon: '🤝',
+    href: '/topluluk',
+    accentColor: colors.success,
+  },
+  {
+    key: 'life',
+    label: "Almanya'da Yaşam",
+    description: 'İkamet, sağlık ve dil başlıklarında temel yaşam rehberi.',
+    icon: '🏙️',
+    href: '/almanyada-yasam',
+    accentColor: colors.accent,
+  },
+  {
+    key: 'join',
+    label: 'Ekibimize Katıl',
+    description: 'Gönüllü katkı ve topluluk desteği için bize ulaşın.',
+    icon: '🚀',
+    href: '/ekibimize-katil',
+    accentColor: colors.error,
+  },
+  {
+    key: 'holiday-hub',
+    label: 'Tatil Planlayıcı',
+    description: 'Almanya ve Türkiye tatil araçlarına tek ekrandan geçin.',
+    icon: '🗓️',
+    href: '/tatil',
+    accentColor: colors.warning,
+  },
+];
+
 export interface MoreLink {
   key: string;
   label: string;
@@ -51,6 +104,10 @@ export interface MoreLink {
 export const MORE_LINKS: MoreLink[] = [
   { key: 'corner', label: 'Arkadaşın Köşesi', icon: '✍️', href: '/yazi-dizisi' },
   { key: 'docs', label: 'Yararlı Belgeler', icon: '📄', href: '/belgeler' },
+  { key: 'community', label: 'Topluluk', icon: '🤝', href: '/topluluk' },
+  { key: 'life', label: "Almanya'da Yaşam", icon: '🏙️', href: '/almanyada-yasam' },
+  { key: 'holiday', label: 'Tatil Planlayıcı', icon: '🗓️', href: '/tatil' },
+  { key: 'join', label: 'Ekibimize Katıl', icon: '🚀', href: '/ekibimize-katil' },
   { key: 'about', label: 'Hakkımızda', icon: 'ℹ️', href: '/hakkimizda' },
   { key: 'contact', label: 'İletişim', icon: '✉️', href: '/iletisim' },
   { key: 'privacy', label: 'Gizlilik Politikası', icon: '🔒', href: '/gizlilik' },

@@ -1,10 +1,11 @@
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native';
 
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { AppCard, EmptyState, ErrorState, LoadingCard } from '@/components/ui';
+import { buildAuthorHref } from '@/features/corner/mapper';
 import { useCornerPosts } from '@/features/corner/hooks';
 import { colors, fontSize, fontWeight, radius, spacing } from '@/theme';
 
@@ -46,31 +47,46 @@ export default function CornerListScreen() {
         }
         ListEmptyComponent={<EmptyState title="Henüz yazı yok" icon="✍️" />}
         renderItem={({ item }) => (
-          <AppCard
-            style={styles.card}
-            accessibilityLabel={item.title}
-            onPress={() => router.push(`/yazi-dizisi/${item.slug}`)}
-          >
-            <View style={styles.row}>
-              {item.authorAvatarImageUrl ? (
-                <Image source={{ uri: item.authorAvatarImageUrl }} style={styles.avatar} contentFit="cover" />
-              ) : (
-                <View style={[styles.avatar, styles.avatarFallback]} />
-              )}
-              <View style={styles.rowText}>
-                <Text style={styles.author}>{item.authorName ?? 'Arkadaşın Köşesi'}</Text>
-                <Text style={styles.meta}>
-                  {item.dateLabel} · {item.readingMinutes} dk
-                </Text>
+          <AppCard style={styles.card} accessibilityLabel={item.title}>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={`${item.title} yazısını aç`}
+              onPress={() => router.push(`/yazi-dizisi/${item.slug}`)}
+            >
+              <View style={styles.row}>
+                {item.authorAvatarImageUrl ? (
+                  <Image source={{ uri: item.authorAvatarImageUrl }} style={styles.avatar} contentFit="cover" />
+                ) : (
+                  <View style={[styles.avatar, styles.avatarFallback]} />
+                )}
+                <View style={styles.rowText}>
+                  <Text style={styles.author}>{item.authorName ?? 'Arkadaşın Köşesi'}</Text>
+                  <Text style={styles.meta}>
+                    {item.dateLabel} · {item.readingMinutes} dk
+                  </Text>
+                </View>
               </View>
-            </View>
-            <Text style={styles.title} numberOfLines={2}>
-              {item.title}
-            </Text>
-            {item.summary ? (
-              <Text style={styles.summary} numberOfLines={2}>
-                {item.summary}
+              <Text style={styles.title} numberOfLines={2}>
+                {item.title}
               </Text>
+              {item.summary ? (
+                <Text style={styles.summary} numberOfLines={2}>
+                  {item.summary}
+                </Text>
+              ) : null}
+            </Pressable>
+            {item.authorSlug ? (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={`${item.authorName ?? 'Yazar'} profilini aç`}
+                onPress={() => {
+                  const authorHref = buildAuthorHref(item.authorSlug as string);
+                  router.push(authorHref as never);
+                }}
+                style={styles.authorLink}
+              >
+                <Text style={styles.authorLinkText}>Yazarı Gör</Text>
+              </Pressable>
             ) : null}
           </AppCard>
         )}
@@ -91,4 +107,10 @@ const styles = StyleSheet.create({
   meta: { fontSize: fontSize.xs, color: colors.textMuted },
   title: { fontSize: fontSize.md, fontWeight: fontWeight.bold, color: colors.textPrimary },
   summary: { fontSize: fontSize.sm, color: colors.textSecondary, marginTop: spacing.xs },
+  authorLink: { marginTop: spacing.md, alignSelf: 'flex-start' },
+  authorLinkText: {
+    fontSize: fontSize.sm,
+    fontWeight: fontWeight.semibold,
+    color: colors.accent,
+  },
 });

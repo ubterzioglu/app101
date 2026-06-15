@@ -6,7 +6,7 @@ export const EXTERNAL_LINKS = {
   contact: `${WEBSITE_ORIGIN}/iletisim`,
 } as const;
 
-export const SUPPORT_EMAIL: string | null = null;
+export const SUPPORT_EMAIL = 'info@almanya101.de';
 
 export function buildWebsiteUrl(path: `/${string}`): string {
   return `${EXTERNAL_LINKS.website}${path}`;

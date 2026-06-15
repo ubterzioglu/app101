@@ -63,6 +63,7 @@ __scaffold/
 
 # OMC local state
 .omc/
+/referans
 
 # EAS upload paketine gerek olmayan içerikler
 /docs

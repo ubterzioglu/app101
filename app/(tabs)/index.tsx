@@ -5,9 +5,9 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { AppButton, AppCard } from '@/components/ui';
 import { EXTERNAL_LINKS } from '@/constants/external-links';
-import { QUICK_ACTIONS, TOOL_LINKS } from '@/constants/navigation';
+import { DISCOVER_LINKS, QUICK_ACTIONS, TOOL_LINKS } from '@/constants/navigation';
 import { openExternalUrl } from '@/lib/urls';
-import { colors, fontSize, fontWeight, radius, spacing } from '@/theme';
+import { colors, fontSize, fontWeight, lineHeight, spacing } from '@/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function HomeScreen() {
         {/* Logo + motto */}
         <View style={styles.hero}>
           <Image
-            source={require('@/assets/images/icon.png')}
+            source={require('@/assets/images/logoandroid.png')}
             style={styles.logoImage}
             contentFit="contain"
             accessibilityLabel="almanya101 logosu"
@@ -56,6 +56,26 @@ export default function HomeScreen() {
             >
               <Text style={styles.toolIcon}>{tool.icon}</Text>
               <Text style={styles.toolLabel}>{tool.label}</Text>
+              <Text style={styles.chevron}>›</Text>
+            </AppCard>
+          ))}
+        </View>
+
+        <Text style={styles.sectionTitle}>Keşfet</Text>
+        <View style={styles.discoverList}>
+          {DISCOVER_LINKS.map((item) => (
+            <AppCard
+              key={item.key}
+              accentColor={item.accentColor}
+              style={styles.discoverCard}
+              accessibilityLabel={item.label}
+              onPress={() => router.push(item.href as never)}
+            >
+              <Text style={styles.discoverIcon}>{item.icon}</Text>
+              <View style={styles.discoverBody}>
+                <Text style={styles.discoverLabel}>{item.label}</Text>
+                <Text style={styles.discoverDescription}>{item.description}</Text>
+              </View>
               <Text style={styles.chevron}>›</Text>
             </AppCard>
           ))}
@@ -123,6 +143,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: spacing.md,
+  },
+  discoverList: { gap: spacing.sm },
+  discoverCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+  },
+  discoverIcon: { fontSize: 24, marginRight: spacing.md },
+  discoverBody: { flex: 1 },
+  discoverLabel: {
+    fontSize: fontSize.md,
+    fontWeight: fontWeight.semibold,
+    color: colors.textPrimary,
+  },
+  discoverDescription: {
+    marginTop: spacing.xs,
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    lineHeight: fontSize.sm * lineHeight.relaxed,
   },
   toolIcon: { fontSize: 22, marginRight: spacing.md },
   toolLabel: { flex: 1, fontSize: fontSize.md, color: colors.textPrimary },
