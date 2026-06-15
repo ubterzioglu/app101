@@ -4,8 +4,9 @@
 
 - [ ] `npm run verify` başarılı
 - [ ] `npm run release:check` başarılı
-- [ ] `npx expo-doctor` kritik hata vermiyor
+- [ ] `npm run doctor` temiz geçiyor
 - [ ] `npx expo config --type public` içinde Android package `de.almanya101.app`
+- [ ] `npx expo config --type public` içinde Android versionCode pozitif tam sayı
 - [ ] `preview` profili APK üretmeye devam ediyor
 - [ ] `production` profili AAB üretmeye devam ediyor
 - [ ] `production` profili `environment = production` kullanıyor

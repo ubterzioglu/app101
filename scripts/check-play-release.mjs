@@ -7,7 +7,10 @@ import { fileURLToPath } from 'node:url';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const APP_JSON_PATH = resolve(ROOT, 'app.json');
 const EAS_JSON_PATH = resolve(ROOT, 'eas.json');
+const PACKAGE_JSON_PATH = resolve(ROOT, 'package.json');
 const LINKS_PATH = resolve(ROOT, 'constants', 'external-links.ts');
+const EASIGNORE_PATH = resolve(ROOT, '.easignore');
+const STORE_LISTING_DRAFT_PATH = resolve(ROOT, 'docs', 'google-play', 'STORE_LISTING_DRAFT.md');
 const MANIFEST_PATH = resolve(ROOT, 'android', 'app', 'src', 'main', 'AndroidManifest.xml');
 const REQUIRED_DOCS = [
   'docs/google-play/README.md',
@@ -19,6 +22,16 @@ const REQUIRED_DOCS = [
   'docs/google-play/EXTERNAL_DEPENDENCIES.md',
   'docs/google-play/PERMISSIONS_AUDIT.md',
   'docs/google-play/EAS_ENV_SETUP.md',
+];
+const REQUIRED_EASIGNORE_PATTERNS = [
+  '.secret',
+  '.env.*',
+  '*.jks',
+  '*.keystore',
+  'play-service-account*.json',
+  'google-play-service-account*.json',
+  'service-account*.json',
+  '*service-account-key*.json',
 ];
 const DANGEROUS_PERMISSIONS = new Set([
   'android.permission.CAMERA',
@@ -92,11 +105,15 @@ function isNonPlaceholderHttpsUrl(value) {
 function checkAppConfig() {
   const appConfig = readJson(APP_JSON_PATH).expo ?? {};
   const easConfig = readJson(EAS_JSON_PATH);
+  const packageJson = readJson(PACKAGE_JSON_PATH);
   const website = extractLink('website');
   const privacyPolicy = extractLink('privacyPolicy');
   const contact = extractLink('contact');
+  const versionCode = appConfig.android?.versionCode;
+  const adaptiveIcon = appConfig.android?.adaptiveIcon ?? {};
 
   assert(appConfig.android?.package === 'de.almanya101.app', 'Android package de.almanya101.app olmalı.');
+  assert(Number.isInteger(versionCode) && versionCode > 0, 'Android versionCode pozitif tam sayı olmalı.');
   assert(
     easConfig.build?.production?.android?.buildType === 'app-bundle',
     'Production profili Android app-bundle üretmeli.'
@@ -114,9 +131,31 @@ function checkAppConfig() {
     easConfig.build?.production?.autoIncrement === true,
     'production.autoIncrement=true korunmalı.'
   );
+  assert(
+    packageJson.scripts?.doctor === 'npx expo-doctor',
+    'package.json içinde doctor scripti npx expo-doctor olmalı.'
+  );
+  assert(
+    typeof packageJson.scripts?.['release:check'] === 'string' &&
+      packageJson.scripts['release:check'].includes('npm run doctor'),
+    'release:check komutu expo-doctor çalıştırmalı.'
+  );
   assert(isNonPlaceholderHttpsUrl(privacyPolicy), 'Gizlilik politikası URL adresi geçerli bir https URL olmalı.');
   assert(isNonPlaceholderHttpsUrl(contact), 'İletişim URL adresi geçerli bir https URL olmalı.');
   assert(isNonPlaceholderHttpsUrl(website), 'Web sitesi URL adresi geçerli bir https URL olmalı.');
+  assert(existsSync(resolve(ROOT, appConfig.icon ?? '')), 'Uygulama icon dosyası mevcut olmalı.');
+  assert(
+    existsSync(resolve(ROOT, adaptiveIcon.foregroundImage ?? '')),
+    'Android adaptive icon foreground dosyası mevcut olmalı.'
+  );
+  assert(
+    existsSync(resolve(ROOT, adaptiveIcon.backgroundImage ?? '')),
+    'Android adaptive icon background dosyası mevcut olmalı.'
+  );
+  assert(
+    existsSync(resolve(ROOT, adaptiveIcon.monochromeImage ?? '')),
+    'Android adaptive icon monochrome dosyası mevcut olmalı.'
+  );
 
   const configuredPermissions = appConfig.android?.permissions;
   if (Array.isArray(configuredPermissions)) {
@@ -134,6 +173,32 @@ function checkDocs() {
   for (const relativePath of REQUIRED_DOCS) {
     assert(existsSync(resolve(ROOT, relativePath)), `Zorunlu release dokümanı eksik: ${relativePath}`);
   }
+}
+
+function checkEasIgnore() {
+  assert(existsSync(EASIGNORE_PATH), '.easignore dosyası mevcut olmalı.');
+  const easignore = readText(EASIGNORE_PATH);
+
+  for (const pattern of REQUIRED_EASIGNORE_PATTERNS) {
+    assert(easignore.includes(pattern), `.easignore içinde zorunlu pattern eksik: ${pattern}`);
+  }
+}
+
+function checkStoreListingDraft() {
+  assert(existsSync(STORE_LISTING_DRAFT_PATH), 'Store listing taslağı mevcut olmalı.');
+  const draft = readText(STORE_LISTING_DRAFT_PATH);
+
+  assert(/Free \/ paid:\s*`Free`/i.test(draft), 'Store listing taslağında Free / paid alanı Free olmalı.');
+  assert(
+    /Destek e-postası:\s*`[^`@]+@[^`]+\.[^`]+`/i.test(draft) || /Destek e-postası:\s*`TBD`/i.test(draft),
+    'Store listing taslağında destek e-postası alanı bulunmalı.'
+  );
+  assert(
+    !/TBD\s*—\s*son mağaza metni hazırlanacak/i.test(draft),
+    'Store listing taslağında uzun açıklama placeholder olmamalı.'
+  );
+  warn(!/Destek e-postası:\s*`TBD`/i.test(draft), 'Store listing taslağında destek e-postası hâlâ TBD.');
+  warn(!/Alt text alanları:\s*`TBD`/i.test(draft), 'Store listing taslağında alt text alanları hâlâ TBD.');
 }
 
 function checkGeneratedManifest() {
@@ -156,6 +221,8 @@ function checkGeneratedManifest() {
 function main() {
   checkAppConfig();
   checkDocs();
+  checkEasIgnore();
+  checkStoreListingDraft();
   checkGeneratedManifest();
 
   if (warnings.length > 0) {

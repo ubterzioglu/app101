@@ -19,7 +19,7 @@ hazırlamak için repo içinde oluşturulan dokümanları içerir.
 ```powershell
 npm run verify
 npm run release:check
-npx expo-doctor
+npm run doctor
 npx expo config --type public
 npx expo prebuild --platform android --clean
 Select-String -Path ".\android\app\src\main\AndroidManifest.xml" -Pattern "<uses-permission"
