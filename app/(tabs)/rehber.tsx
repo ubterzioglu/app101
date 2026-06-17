@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
@@ -10,7 +10,7 @@ import { EmptyState, ErrorState, LoadingCard } from '@/components/ui';
 import { useCities, useProviders } from '@/features/providers/hooks';
 import { filterProvidersByQuery } from '@/features/providers/mapper';
 import type { ProviderType } from '@/features/providers/types';
-import { colors, spacing } from '@/theme';
+import { colors, fontSize, lineHeight, spacing } from '@/theme';
 
 export default function RehberScreen() {
   const router = useRouter();
@@ -36,15 +36,20 @@ export default function RehberScreen() {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         ListHeaderComponent={
-          <ProviderFilters
-            category={category}
-            city={city}
-            query={query}
-            cities={cities}
-            onCategoryChange={setCategory}
-            onCityChange={setCity}
-            onQueryChange={setQuery}
-          />
+          <View>
+            <Text style={styles.intro}>
+              Almanya’da Türkçe hizmet veren uzmanları, işletmeleri ve topluluk kaynaklarını keşfet.
+            </Text>
+            <ProviderFilters
+              category={category}
+              city={city}
+              query={query}
+              cities={cities}
+              onCategoryChange={setCategory}
+              onCityChange={setCity}
+              onQueryChange={setQuery}
+            />
+          </View>
         }
         renderItem={({ item }) => (
           <ProviderCard provider={item} onPress={() => router.push(`/rehber/${item.id}`)} />
@@ -71,6 +76,12 @@ export default function RehberScreen() {
 }
 
 const styles = StyleSheet.create({
-  list: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xxl },
+  list: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xxxl },
   loading: { paddingTop: spacing.md },
+  intro: {
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    lineHeight: fontSize.sm * lineHeight.normal,
+    paddingTop: spacing.lg,
+  },
 });

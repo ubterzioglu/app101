@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { colors, radius, spacing } from '@/theme';
+import { colors, radius, shadow, spacing } from '@/theme';
 
 interface LoadingCardProps {
   lines?: number;
@@ -27,17 +27,18 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     padding: spacing.lg,
     marginBottom: spacing.md,
+    ...shadow.sm,
   },
   image: {
     height: 140,
     borderRadius: radius.md,
-    backgroundColor: colors.surface2,
+    backgroundColor: colors.surface3,
     marginBottom: spacing.md,
   },
   line: {
     height: 14,
     borderRadius: radius.sm,
-    backgroundColor: colors.surface2,
+    backgroundColor: colors.surface3,
     marginBottom: spacing.sm,
   },
   lineShort: {

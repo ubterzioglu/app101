@@ -9,6 +9,7 @@ export function OfflineBanner() {
 
   return (
     <View style={styles.banner} accessibilityRole="alert">
+      <View style={styles.dot} />
       <Text style={styles.text}>İnternet bağlantısı yok — kayıtlı içerik gösteriliyor.</Text>
     </View>
   );
@@ -16,14 +17,26 @@ export function OfflineBanner() {
 
 const styles = StyleSheet.create({
   banner: {
-    backgroundColor: colors.warning,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.surface2,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.borderStrong,
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.lg,
   },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: colors.accent,
+    marginRight: spacing.sm,
+  },
   text: {
-    color: colors.white,
+    color: colors.accent,
     fontSize: fontSize.xs,
-    fontWeight: fontWeight.medium,
+    fontWeight: fontWeight.semibold,
     textAlign: 'center',
   },
 });

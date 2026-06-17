@@ -1,6 +1,6 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontSize, fontWeight, radius, spacing, MIN_TOUCH_TARGET } from '@/theme';
+import { colors, fontSize, fontWeight, radius, shadow, spacing } from '@/theme';
 
 type Variant = 'primary' | 'secondary' | 'outline' | 'danger';
 
@@ -23,7 +23,7 @@ const VARIANT_BG: Record<Variant, string> = {
 
 const VARIANT_TEXT: Record<Variant, string> = {
   primary: colors.textInverse,
-  secondary: colors.white,
+  secondary: colors.textInverse,
   outline: colors.accent,
   danger: colors.white,
 };
@@ -49,6 +49,7 @@ export function AppButton({
       style={({ pressed }) => [
         styles.base,
         { backgroundColor: VARIANT_BG[variant] },
+        variant === 'primary' && !isDisabled && shadow.glow,
         variant === 'outline' && styles.outline,
         fullWidth && styles.fullWidth,
         pressed && !isDisabled && styles.pressed,
@@ -69,22 +70,23 @@ export function AppButton({
 
 const styles = StyleSheet.create({
   base: {
-    minHeight: MIN_TOUCH_TARGET,
-    borderRadius: radius.md,
-    paddingHorizontal: spacing.lg,
+    minHeight: 52,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
     justifyContent: 'center',
     alignItems: 'center',
   },
   outline: {
-    borderWidth: 2,
-    borderColor: colors.accent,
+    borderWidth: 1.5,
+    borderColor: colors.borderStrong,
   },
   fullWidth: {
     alignSelf: 'stretch',
   },
   pressed: {
-    opacity: 0.85,
+    opacity: 0.88,
+    transform: [{ scale: 0.99 }],
   },
   disabled: {
     opacity: 0.4,
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: fontSize.md,
-    fontWeight: fontWeight.semibold,
+    fontWeight: fontWeight.bold,
+    letterSpacing: 0.2,
   },
 });

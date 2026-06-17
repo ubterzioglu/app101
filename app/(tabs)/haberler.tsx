@@ -1,12 +1,12 @@
 import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { FlatList, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { AppHeader } from '@/components/layout/AppHeader';
 import { NewsHeroCard } from '@/components/news/NewsHeroCard';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { NewsCard } from '@/components/news/NewsCard';
-import { AppButton, EmptyState, ErrorState, LoadingCard } from '@/components/ui';
+import { AppButton, EmptyState, ErrorState, LoadingCard, ModernChip } from '@/components/ui';
 import {
   NEWS_CATEGORIES,
   getNewsCategoryLabel,
@@ -15,7 +15,7 @@ import {
 } from '@/features/news/helpers';
 import { useNewsList } from '@/features/news/hooks';
 import type { NewsArticle } from '@/features/news/types';
-import { colors, fontSize, fontWeight, radius, spacing } from '@/theme';
+import { colors, fontSize, lineHeight, spacing } from '@/theme';
 
 export default function HaberlerScreen() {
   const router = useRouter();
@@ -69,40 +69,41 @@ export default function HaberlerScreen() {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View>
+            <Text style={styles.intro}>
+              Almanya ve dünyadan seçilen güncel haberleri Türkçe takip et.
+            </Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.chips}
+            >
+              {NEWS_CATEGORIES.map((item) => (
+                <ModernChip
+                  key={item}
+                  label={getNewsCategoryLabel(item)}
+                  active={item === category}
+                  onPress={() => setCategory(item)}
+                  variant="yellow"
+                />
+              ))}
+            </ScrollView>
             {visible.hero ? (
               <NewsHeroCard
                 article={visible.hero}
                 onPress={() => router.push(`/haberler/${visible.hero?.slug}`)}
               />
             ) : null}
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.chips}
-            >
-              {NEWS_CATEGORIES.map((item) => {
-                const active = item === category;
-                return (
-                  <Pressable
-                    key={item}
-                    accessibilityRole="button"
-                    onPress={() => setCategory(item)}
-                    style={[styles.chip, active && styles.chipActive]}
-                  >
-                    <Text style={[styles.chipText, active && styles.chipTextActive]}>
-                      {getNewsCategoryLabel(item)}
-                    </Text>
-                  </Pressable>
-                );
-              })}
-            </ScrollView>
           </View>
         }
         renderItem={({ item }) => (
           <NewsCard article={item} onPress={() => router.push(`/haberler/${item.slug}`)} />
         )}
         refreshControl={
-          <RefreshControl refreshing={isRefetching} onRefresh={() => refetch()} tintColor={colors.accent} />
+          <RefreshControl
+            refreshing={isRefetching}
+            onRefresh={() => refetch()}
+            tintColor={colors.accent}
+          />
         }
         ListEmptyComponent={
           visible.hero ? null : (
@@ -135,18 +136,13 @@ export default function HaberlerScreen() {
 const styles = StyleSheet.create({
   loading: { padding: spacing.lg },
   list: { padding: spacing.lg },
-  chips: { gap: spacing.sm, paddingBottom: spacing.md },
-  chip: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.pill,
-    backgroundColor: colors.surface1,
-    borderWidth: 1,
-    borderColor: colors.border,
+  intro: {
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    lineHeight: fontSize.sm * lineHeight.normal,
+    marginBottom: spacing.md,
   },
-  chipActive: { backgroundColor: colors.accent, borderColor: colors.accent },
-  chipText: { fontSize: fontSize.sm, color: colors.textSecondary, fontWeight: fontWeight.medium },
-  chipTextActive: { color: colors.textInverse },
+  chips: { gap: spacing.sm, paddingBottom: spacing.lg },
   footer: {
     paddingTop: spacing.sm,
     paddingBottom: spacing.md,

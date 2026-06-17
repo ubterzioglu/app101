@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
 
 import { colors, fontSize, fontWeight, radius, spacing } from '@/theme';
@@ -8,7 +9,17 @@ interface AppTextInputProps extends TextInputProps {
   required?: boolean;
 }
 
-export function AppTextInput({ label, error, required, style, ...rest }: AppTextInputProps) {
+export function AppTextInput({
+  label,
+  error,
+  required,
+  style,
+  onFocus,
+  onBlur,
+  ...rest
+}: AppTextInputProps) {
+  const [focused, setFocused] = useState(false);
+
   return (
     <View style={styles.wrapper}>
       {label ? (
@@ -19,8 +30,21 @@ export function AppTextInput({ label, error, required, style, ...rest }: AppText
       ) : null}
       <TextInput
         placeholderTextColor={colors.textMuted}
-        style={[styles.input, error ? styles.inputError : null, style]}
+        style={[
+          styles.input,
+          focused && styles.inputFocused,
+          error ? styles.inputError : null,
+          style,
+        ]}
         accessibilityLabel={label}
+        onFocus={(e) => {
+          setFocused(true);
+          onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          setFocused(false);
+          onBlur?.(e);
+        }}
         {...rest}
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -42,15 +66,19 @@ const styles = StyleSheet.create({
     color: colors.error,
   },
   input: {
-    minHeight: 48,
-    borderWidth: 1,
+    minHeight: 52,
+    borderWidth: 1.5,
     borderColor: colors.border,
-    borderRadius: radius.md,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
+    borderRadius: radius.lg,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
     fontSize: fontSize.md,
     color: colors.textPrimary,
     backgroundColor: colors.surface3,
+  },
+  inputFocused: {
+    borderColor: colors.accent,
+    backgroundColor: colors.surface4,
   },
   inputError: {
     borderColor: colors.error,

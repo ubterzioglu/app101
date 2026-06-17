@@ -7,3 +7,8 @@ export { EmptyState } from './EmptyState';
 export { ErrorState } from './ErrorState';
 export { LoadingCard } from './LoadingCard';
 export { OfflineBanner } from './OfflineBanner';
+export { SectionHeader } from './SectionHeader';
+export { ModernChip } from './ModernChip';
+export { InfoBadge } from './InfoBadge';
+export { HeroPanel } from './HeroPanel';
+export { QuickActionCard } from './QuickActionCard';

@@ -56,7 +56,7 @@ export default function HolidayHubScreen() {
     <ScreenContainer padded={false}>
       <AppHeader title="Tatil Planlayıcı" showBack />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <AppCard accentColor={colors.warning}>
+        <AppCard variant="elevated" glow accentColor={colors.warning}>
           <Text style={styles.title}>2026 tatil planlayıcı merkezine hoş geldiniz</Text>
           <Text style={styles.text}>
             Almanya ve Türkiye tatil araçlarına tek ekrandan geçin, resmi tatilleri ve izin

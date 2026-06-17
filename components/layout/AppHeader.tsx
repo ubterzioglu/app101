@@ -1,15 +1,16 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
-import { colors, fontSize, fontWeight, spacing, MIN_TOUCH_TARGET } from '@/theme';
+import { colors, fontSize, fontWeight, shadow, spacing, MIN_TOUCH_TARGET } from '@/theme';
 
 interface AppHeaderProps {
   title: string;
   showBack?: boolean;
   rightSlot?: React.ReactNode;
+  subtitle?: string;
 }
 
-export function AppHeader({ title, showBack = false, rightSlot }: AppHeaderProps) {
+export function AppHeader({ title, showBack = false, rightSlot, subtitle }: AppHeaderProps) {
   const router = useRouter();
 
   return (
@@ -20,16 +21,26 @@ export function AppHeader({ title, showBack = false, rightSlot }: AppHeaderProps
             accessibilityRole="button"
             accessibilityLabel="Geri"
             onPress={() => router.back()}
-            style={styles.backButton}
+            hitSlop={8}
+            style={({ pressed }) => [styles.backButton, pressed && styles.backPressed]}
           >
             <Text style={styles.backText}>‹</Text>
           </Pressable>
         ) : null}
       </View>
-      <Text style={styles.title} numberOfLines={1}>
-        {title}
-      </Text>
-      <View style={styles.side}>{rightSlot}</View>
+
+      <View style={styles.titleBlock}>
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
+        {subtitle ? (
+          <Text style={styles.subtitle} numberOfLines={1}>
+            {subtitle}
+          </Text>
+        ) : null}
+      </View>
+
+      <View style={[styles.side, styles.sideRight]}>{rightSlot}</View>
     </View>
   );
 }
@@ -44,20 +55,37 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface1,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
+    ...shadow.sm,
   },
-  side: { width: MIN_TOUCH_TARGET, alignItems: 'center' },
+  side: { width: MIN_TOUCH_TARGET, alignItems: 'flex-start', justifyContent: 'center' },
+  sideRight: { alignItems: 'flex-end' },
   backButton: {
     width: MIN_TOUCH_TARGET,
     height: MIN_TOUCH_TARGET,
+    borderRadius: MIN_TOUCH_TARGET / 2,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.surface2,
   },
-  backText: { fontSize: 32, color: colors.accent, lineHeight: 34 },
-  title: {
+  backPressed: { opacity: 0.7, backgroundColor: colors.surface3 },
+  backText: { fontSize: 30, color: colors.accent, lineHeight: 32, marginTop: -2 },
+  titleBlock: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: spacing.xs,
+  },
+  title: {
     textAlign: 'center',
     fontSize: fontSize.lg,
     fontWeight: fontWeight.bold,
     color: colors.textPrimary,
+    letterSpacing: 0.2,
+  },
+  subtitle: {
+    textAlign: 'center',
+    fontSize: fontSize.xs,
+    color: colors.textSecondary,
+    marginTop: 2,
   },
 });

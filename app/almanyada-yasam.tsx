@@ -70,8 +70,8 @@ export default function LifeInGermanyScreen() {
     <ScreenContainer padded={false}>
       <AppHeader title="Almanya'da Yaşam" showBack />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <AppCard accentColor={colors.accent}>
-          <Text style={styles.title}>Almanya'da yaşam için başlangıç rehberi</Text>
+        <AppCard variant="elevated" glow accentColor={colors.accent}>
+          <Text style={styles.title}>Almanya’da yaşam için başlangıç rehberi</Text>
           <Text style={styles.text}>
             Bu ekran, tam makale sistemi kurmadan önce en kritik yaşam başlıklarını mobilde
             özetler ve sizi ilgili rehber yüzeylerine yönlendirir.

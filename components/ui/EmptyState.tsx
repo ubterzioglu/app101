@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontSize, fontWeight, spacing } from '@/theme';
+import { colors, fontSize, fontWeight, radius, spacing } from '@/theme';
 import { AppButton } from './AppButton';
 
 interface EmptyStateProps {
@@ -14,7 +14,9 @@ interface EmptyStateProps {
 export function EmptyState({ title, message, icon = '📭', actionLabel, onAction }: EmptyStateProps) {
   return (
     <View style={styles.container} accessibilityRole="summary">
-      <Text style={styles.icon}>{icon}</Text>
+      <View style={styles.iconWrap}>
+        <Text style={styles.icon}>{icon}</Text>
+      </View>
       <Text style={styles.title}>{title}</Text>
       {message ? <Text style={styles.message}>{message}</Text> : null}
       {actionLabel && onAction ? (
@@ -30,10 +32,22 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: spacing.xl,
+    paddingVertical: spacing.xxl,
+    paddingHorizontal: spacing.xl,
     gap: spacing.sm,
   },
-  icon: { fontSize: 40, marginBottom: spacing.xs },
+  iconWrap: {
+    width: 72,
+    height: 72,
+    borderRadius: radius.xl,
+    backgroundColor: colors.surface2,
+    borderWidth: 1,
+    borderColor: colors.border,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.sm,
+  },
+  icon: { fontSize: 36 },
   title: {
     fontSize: fontSize.lg,
     fontWeight: fontWeight.bold,
@@ -44,6 +58,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.sm,
     color: colors.textSecondary,
     textAlign: 'center',
+    maxWidth: 320,
   },
   action: { marginTop: spacing.md },
 });

@@ -17,6 +17,14 @@ export const QUICK_ACTIONS: QuickAction[] = [
   { key: 'news', label: 'Haberleri Oku', icon: '📰', href: '/(tabs)/haberler', color: colors.yellow },
 ];
 
+// Short helper texts for QUICK_ACTIONS, keyed by QuickAction.key (plan §9.2).
+export const QUICK_ACTION_HELPERS: Record<string, string> = {
+  salary: 'Brüt/net hesabı için hızlı başlangıç.',
+  citizenship: 'Almanca ve Türkçe sorularla hazırlan.',
+  rehber: 'Şehir ve kategoriye göre uzman ara.',
+  news: 'Almanya gündemini Türkçe takip et.',
+};
+
 export interface ToolLink {
   key: string;
   label: string;
@@ -24,6 +32,39 @@ export interface ToolLink {
   href: string;
   phase: 'p0' | 'p1';
 }
+
+// Short explanations shown under each tool card (plan §9.3 / §14), keyed by ToolLink.key.
+export const TOOL_HELPERS: Record<string, string> = {
+  citizenship: 'Sorularla sınava hazırlan.',
+  salary: 'Brüt/net tahmini hesapla.',
+  jobs: 'Almanya odaklı kaynakları keşfet.',
+  bank: 'Banka seçeneklerini karşılaştır.',
+  insurance: 'Sigorta kararını kolaylaştır.',
+  transfer: 'Transfer seçeneklerini incele.',
+  visa: 'Vize sürecinde yön bul.',
+  'holiday-tr': 'Türkiye tatilini planla.',
+  'holiday-de': 'Almanya içi tatil fikirleri bul.',
+  stepstone: 'Maaş ve kariyer verilerini karşılaştır.',
+};
+
+// Status badge per tool. p0 tools are live; the salary tool ships in beta.
+export type ToolStatus = 'active' | 'beta' | 'soon';
+
+export const TOOL_STATUS: Record<string, ToolStatus> = {
+  citizenship: 'active',
+  salary: 'beta',
+  jobs: 'active',
+  bank: 'active',
+  insurance: 'active',
+  transfer: 'active',
+  visa: 'active',
+  'holiday-tr': 'active',
+  'holiday-de': 'active',
+  stepstone: 'active',
+};
+
+// Keys of the tools surfaced in the Home "Popüler Araçlar" section (plan §9.3).
+export const POPULAR_TOOL_KEYS = ['citizenship', 'salary', 'jobs', 'bank', 'insurance'] as const;
 
 // Tool center entries (plan §3.2 G / §3.3). P0 are in the first APK.
 export const TOOL_LINKS: ToolLink[] = [

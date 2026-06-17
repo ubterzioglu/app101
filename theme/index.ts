@@ -6,6 +6,9 @@ export {
   fontSize,
   fontWeight,
   lineHeight,
+  iconSize,
+  cardPadding,
+  shadow,
   MIN_TOUCH_TARGET,
   MAX_CONTENT_WIDTH,
 } from './tokens';

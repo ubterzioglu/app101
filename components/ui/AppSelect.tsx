@@ -39,7 +39,7 @@ export function AppSelect({
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={label ?? placeholder}
-        style={styles.trigger}
+        style={({ pressed }) => [styles.trigger, open && styles.triggerOpen, pressed && styles.pressed]}
         onPress={() => setOpen(true)}
       >
         <Text style={[styles.triggerText, !selected && styles.placeholder]} numberOfLines={1}>
@@ -51,25 +51,29 @@ export function AppSelect({
       <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>
         <Pressable style={styles.backdrop} onPress={() => setOpen(false)}>
           <View style={styles.sheet}>
+            <View style={styles.sheetHandle} />
             <FlatList
               data={options}
               keyExtractor={(item) => item.value}
-              renderItem={({ item }) => (
-                <Pressable
-                  accessibilityRole="button"
-                  style={styles.option}
-                  onPress={() => {
-                    onChange(item.value);
-                    setOpen(false);
-                  }}
-                >
-                  <Text
-                    style={[styles.optionText, item.value === value && styles.optionSelected]}
+              renderItem={({ item }) => {
+                const isSelected = item.value === value;
+                return (
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityState={{ selected: isSelected }}
+                    style={({ pressed }) => [styles.option, pressed && styles.optionPressed]}
+                    onPress={() => {
+                      onChange(item.value);
+                      setOpen(false);
+                    }}
                   >
-                    {item.label}
-                  </Text>
-                </Pressable>
-              )}
+                    <Text style={[styles.optionText, isSelected && styles.optionSelected]}>
+                      {item.label}
+                    </Text>
+                    {isSelected ? <Text style={styles.check}>✓</Text> : null}
+                  </Pressable>
+                );
+              }}
             />
           </View>
         </Pressable>
@@ -88,38 +92,58 @@ const styles = StyleSheet.create({
   },
   required: { color: colors.error },
   trigger: {
-    minHeight: MIN_TOUCH_TARGET,
-    borderWidth: 1,
+    minHeight: 52,
+    borderWidth: 1.5,
     borderColor: colors.border,
-    borderRadius: radius.md,
-    paddingHorizontal: spacing.md,
+    borderRadius: radius.lg,
+    paddingHorizontal: spacing.lg,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: colors.surface3,
   },
+  triggerOpen: {
+    borderColor: colors.accent,
+    backgroundColor: colors.surface4,
+  },
+  pressed: { opacity: 0.9 },
   triggerText: { fontSize: fontSize.md, color: colors.textPrimary, flex: 1 },
   placeholder: { color: colors.textMuted },
   chevron: { color: colors.accent, fontSize: fontSize.lg, marginLeft: spacing.sm },
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: colors.overlay,
     justifyContent: 'flex-end',
   },
   sheet: {
     backgroundColor: colors.surface1,
-    borderTopLeftRadius: radius.xl,
-    borderTopRightRadius: radius.xl,
+    borderTopLeftRadius: radius.xxl,
+    borderTopRightRadius: radius.xxl,
+    borderTopWidth: 1,
+    borderColor: colors.border,
     maxHeight: '60%',
-    paddingVertical: spacing.sm,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.lg,
+  },
+  sheetHandle: {
+    alignSelf: 'center',
+    width: 40,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: colors.surface4,
+    marginBottom: spacing.sm,
   },
   option: {
     minHeight: MIN_TOUCH_TARGET,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: spacing.lg,
     borderBottomWidth: 1,
-    borderBottomColor: colors.surface2,
+    borderBottomColor: colors.border,
   },
+  optionPressed: { backgroundColor: colors.surface2 },
   optionText: { fontSize: fontSize.md, color: colors.textPrimary },
   optionSelected: { color: colors.accent, fontWeight: fontWeight.semibold },
+  check: { color: colors.accent, fontSize: fontSize.md, fontWeight: fontWeight.bold },
 });

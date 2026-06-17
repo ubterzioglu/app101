@@ -78,10 +78,10 @@ export default function CommunityScreen() {
     <ScreenContainer padded={false}>
       <AppHeader title="Topluluk" showBack />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <AppCard accentColor={colors.success}>
+        <AppCard variant="elevated" glow accentColor={colors.success}>
           <Text style={styles.heroTitle}>Topluluğumuza Katılın</Text>
           <Text style={styles.heroText}>
-            Almanya'da yaşayan Türklerle bağlantı kurun, deneyim paylaşın ve güvenilir iletişim
+            Almanya’da yaşayan Türklerle bağlantı kurun, deneyim paylaşın ve güvenilir iletişim
             kanallarından bize ulaşın.
           </Text>
         </AppCard>
