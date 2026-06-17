@@ -69,8 +69,6 @@ __scaffold/
 /docs
 /coverage
 
-# Yayın rehberi dokümanları — EAS build paketine gerek yok
-/almanya101_*.md
-/almanya101_*.html
-/nextsteps.html
+# Arşivlenmiş dokümanlar — EAS build paketine gerek yok
+/archive
 *.pdf
