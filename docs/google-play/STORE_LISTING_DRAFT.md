@@ -6,7 +6,7 @@
 - Önerilen kategori kararı: `Lifestyle` değerlendirilmeli; uygulama yalnızca haber uygulaması değildir
 - Default language: `Türkçe`
 - Free / paid: `Free`
-- Destek e-postası: `TBD`
+- Destek e-postası: `ubterzioglu@gmail.com`
 - Web sitesi: `https://almanya101.de`
 - Gizlilik politikası: `https://almanya101.de/gizlilik`
 
@@ -46,4 +46,4 @@ almanya101, Almanya hayatına dair haber, rehber ve pratik araçları tek bir T�
 
 ## Dış blokajlar
 
-- Destek e-postası Google Play Console teslimi öncesinde gerçek değer ile doldurulmalıdır.
+- Destek e-postası dolduruldu (`ubterzioglu@gmail.com`); Play Console tesliminde aynı değer kullanılmalıdır.
