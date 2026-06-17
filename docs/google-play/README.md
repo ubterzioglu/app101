@@ -5,6 +5,7 @@ hazırlamak için repo içinde oluşturulan dokümanları içerir.
 
 ## İçerik
 
+- `RELEASE_RUNBOOK.md` — uçtan uca yayın adımları (build → internal → closed 14 gün → production)
 - `EAS_ENV_SETUP.md` — EAS Cloud Build için public environment değişkenleri kurulumu
 - `PERMISSIONS_AUDIT.md` — generated Android manifest izin denetimi
 - `DATA_SAFETY_INVENTORY.md` — Data Safety formu için kod denetimi tabanlı envanter
